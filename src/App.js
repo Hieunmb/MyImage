@@ -7,10 +7,17 @@ import Collection_list_view from './components/pages/collection-list-view';
 import Collection from './components/pages/collection';
 import Contact from './components/pages/contact';
 import Index from './components/pages/index';
+import Header from './components/layouts/header';
+import BreadCrumb from './components/layouts/breadcrumb';
+import Footer from './components/layouts/footer';
 
 function App() {
   return (
     <div className="App">
+      <div class="paira-container pages-container">
+      <Header></Header>
+      <main class="about-page">
+      <BreadCrumb></BreadCrumb>
       <Routes>
         <Route path='/404' element={<Error/>}/>
         <Route path='/about' element={<About/>}/>
@@ -19,8 +26,11 @@ function App() {
         <Route path='/collection-list-view' element={<Collection_list_view/>}/>
         <Route path='/collection' element={<Collection/>}/>
         <Route path='/contact' element={<Contact/>}/>
-        <Route path='/index' element={<Index/>}/>
+        <Route path='/' element={<Index/>}/>
       </Routes>
+      </main>
+      <Footer></Footer>
+      </div>
     </div>
   );
 }
