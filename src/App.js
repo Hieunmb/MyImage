@@ -8,17 +8,19 @@ import Collection from './components/pages/collection';
 import Contact from './components/pages/contact';
 import Index from './components/pages/index';
 import Header from './components/layouts/header';
-import BreadCrumb from './components/layouts/breadcrumb';
 import Footer from './components/layouts/footer';
+import ListCollection from './components/pages/list-collection';
+import Login from './components/auth/login';
+import Product from './components/pages/product';
+import Register from './components/auth/register';
+import ResetPassword from './components/auth/reset-password';
+import Search from './components/pages/search';
 
 function App() {
-  const location = useLocation();
   return (
     <div className="App">
       <div class="paira-container pages-container">
       <Header></Header>
-      <main class="about-page">
-      <BreadCrumb currentLocation={location.pathname}></BreadCrumb>
       <Routes>
         <Route path='/404' element={<Error/>}/>
         <Route path='/about' element={<About/>}/>
@@ -28,8 +30,13 @@ function App() {
         <Route path='/collection' element={<Collection/>}/>
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/' element={<Index/>}/>
+        <Route path='/list-collection' element={<ListCollection/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/product' element={<Product/>}/>
+        <Route path='/register' element={<Register/>}/>
+        <Route path='/reset-password' element={<ResetPassword/>}/>
+        <Route path='/search' element={<Search/>}/>
       </Routes>
-      </main>
       <Footer></Footer>
       </div>
     </div>

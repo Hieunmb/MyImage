@@ -1,27 +1,6 @@
 function Article() {
     return (
-        <section>
-            <head>
-                <meta charset="utf-8"/>
-                <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-                <meta name="viewport" content="width=device-width, initial-scale=1"/>
-                <meta name="description" content="Dye - Multipurpose Creative Shop Art & Photography HTML Template"/>
-                <meta name="author" content="ThemeTidy"/>
-                <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png" />
-                <title>Article - Dye - Multipurpose Creative Shop Art & Photography HTML Template</title>
-                <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
-                <link href="assets/css/animate.min.css" rel="stylesheet" type="text/css" media="all"/>
-                <link href="assets/css/paira.css" rel="stylesheet" type="text/css" media="all"/>
-                <link href="assets/css/paira-color-font.css" rel="stylesheet" type="text/css" media="all"/>
-                <link href="assets/css/paira-responsive.css" rel="stylesheet" type="text/css" media="all"/>
-                <link href="assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all"/>
-                <script src="assets/js/html5shiv.min.js" type="text/javascript"></script>
-                <script src="assets/js/respond.min.js" type="text/javascript"></script>
-                <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet"/>
-            </head>
-            <body>
-                <div className="paira-container pages-container">
-                    {/* <main className="article-page">
+        <main className="article-page">
                         <section className="breadcrumb-container paira-margin-bottom-3">
                             <div className="breadcrumb">
                                 <div className="container-fluid padding-fix">
@@ -38,7 +17,7 @@ function Article() {
                                 <div className="row">
                                     <div className="col-md-12">
                                         <div className="article-description">
-                                            <img src="assets/images/blog/blog-big.jpg" alt="" className="img-responsive margin-bottom-30">
+                                            <img src="assets/images/blog/blog-big.jpg" alt="" className="img-responsive margin-bottom-30"/>
                                             <p className="brand-color">March 05, 2016</p>
                                             <h1 className="margin-top-5">Our paintis unique for all</h1>
                                             <p className="margin-top-15">At quicum ioca seria, ut dicitur, quicum arcana, quicum occulta omnia? Idemne, quod iucunde? Hoc loco tenere se Triarius non potuit. Mihi vero, inquit, placet agi subtilius et, ut ipse dixisti, pressius. Beatus autem esse in maximarum rerum timore nemo potest. Ergo ita: non posse honeste vivi, nisi honeste vivatur? Est enim effectrix multarum et magnarum voluptatum. Beatus autem esse in maximarum rerum timore nemopotest.</p>
@@ -50,7 +29,7 @@ function Article() {
                                                 <li> Solum praeterea formosum, solum liberum, solum civem, stultost; Sed ille, ut dixi, vitiose. Venit enim mihi Platonis.</li>
                                             </ul>
                                             <p className="margin-bottom-15">Ita ne hoc quidem modo paria peccata sunt. Omnis enim est natura diligens sui.</p>
-                                            <img src="assets/images/blog/blog-desc.jpg" alt="" className="img-responsive margin-bottom-15 center-block">
+                                            <img src="assets/images/blog/blog-desc.jpg" alt="" className="img-responsive margin-bottom-15 center-block"/>
                                             <ul className="list-unstyled margin-bottom-15 lists">
                                                 <li> Cave putes quicquam esse verius.</li>
                                                 <li> Sed haec quidem liberius ab eo dicuntur et saepius.</li>
@@ -58,7 +37,7 @@ function Article() {
                                                 <li> Solum praeterea formosum, solum liberum, solum civem, stultost; Sed ille, ut dixi, vitiose. Venit enim mihi Platonis.</li>
                                             </ul>
                                             <p className="margin-clear">Quamquam tu hanc copiosiorem etiam soles dicere. Tum mihi Piso: Quid ergo? Cupiditates non Epicuri divisione finiebat, sed sua satietate for Nam et complectitur verbis, quod vult, et dicit plane, quod intellegam; Duarum enim vitarum nobis erunt instituta capienda. Aliter homines, aliter philosophos loqui putas oportere? Bestiarum vero nullum iudicium puto. Cui Tubuli nomen odio non est?</p>
-                                            <hr className="margin-bottom-20 margin-top-30">
+                                            <hr className="margin-bottom-20 margin-top-30"/>
                                             <div className="col-md-6">
                                                 <div className="next-pre pull-left">
                                                     <a href="#"><i className="fa fa-long-arrow-left margin-right-5"></i>PREV POST</a>
@@ -77,7 +56,7 @@ function Article() {
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <hr className="full-width pull-left margin-top-5 margin-bottom-30">
+                                            <hr className="full-width pull-left margin-top-5 margin-bottom-30"/>
                                         </div>
                                     </div>
                                 </div>
@@ -110,13 +89,13 @@ function Article() {
                                         </li>
                                     </ul>
                                 </div>
-                                <hr className="margin-top-30 paira-margin-bottom-3 pull-left full-width">
+                                <hr className="margin-top-30 paira-margin-bottom-3 pull-left full-width"/>
                                 <div className="form-contact">
                                     <h3 className="text-capitalize  margin-bottom-30">Leave A Comment</h3>
                                     <div className="row">
                                         <form accept-charset="UTF-8" action="#" className="contact-form" method="post">
-                                            <input name="form_type" type="hidden" value="new_comment">
-                                            <input name="utf8" type="hidden" value="✓">
+                                            <input name="form_type" type="hidden" value="new_comment"/>
+                                            <input name="utf8" type="hidden" value="✓"/>
                                             <div className="col-md-6 col-sm-6 col-xs-12">
                                                 <div className="input-group margin-bottom-20">
                                                     <span className="input-group-addon" id="basic-addon7">Name</span>
@@ -151,17 +130,7 @@ function Article() {
                                 </div>
                             </div>
                         </section>
-                    </main> */}
-                </div>
-                <script src="assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
-                <script src="assets/js/jquery-migrate-3.0.0.min.js" type="text/javascript"></script>
-                <script src="assets/js/jquery.easing.1.3.js" type="text/javascript"></script>
-                <script src="assets/js/jquery.waypoints.min.js" type="text/javascript"></script>
-                <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-                <script src="assets/js/jquery.mousewheel.min.js" type="text/javascript"></script>
-                <script src="assets/js/paira.js" type="text/javascript"></script>
-            </body>
-        </section>
+                    </main>
     )
 }
     
