@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import {useLocation, Route, Routes } from 'react-router-dom';
 import Error from './components/pages/404';
 import About from './components/pages/about';
 import Article from './components/pages/article';
@@ -12,12 +12,13 @@ import BreadCrumb from './components/layouts/breadcrumb';
 import Footer from './components/layouts/footer';
 
 function App() {
+  const location = useLocation();
   return (
     <div className="App">
       <div class="paira-container pages-container">
       <Header></Header>
       <main class="about-page">
-      <BreadCrumb></BreadCrumb>
+      <BreadCrumb currentLocation={location.pathname}></BreadCrumb>
       <Routes>
         <Route path='/404' element={<Error/>}/>
         <Route path='/about' element={<About/>}/>

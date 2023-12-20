@@ -1,6 +1,13 @@
 import React from "react";
+import { useLocation } from 'react-router-dom';
 
 function Header() {
+     // Get the current location
+  const location = useLocation();
+  
+  // Check if the current path is '/'
+  const isHomePage = location.pathname === '/';
+
     return(
     <header>
         <section className="header-top">
@@ -28,7 +35,7 @@ function Header() {
                 </div>
             </div>
         </section>
-        <section class="header-middle paira-margin-bottom-2">
+        <section className={`header-middle paira-margin-bottom-2 ${isHomePage ? 'show' : 'hide'}`}>
             <div class="main-slider paira-animation-container">
                 <div id="Carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
