@@ -39,6 +39,25 @@ function App() {
       </Routes>
       <Footer></Footer>
       </div>
+      <div class="modal fade paira-search-popup search-pops" id="paira-search" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true"><i class="fa fa-times"></i></span></button>
+                <div class="row">
+                    <div class="col-md-12 paira-margin-top-1">
+                        <form class="popup-search-form">
+                            <input type="text" class="form-control padding-clear text-capitalize pop-light" name="q" value="" placeholder="Search here..."/>
+                            <button class="search"><i class="fa fa-search fa-2x"></i></button>
+                            <button class="btn btn-success btn-lg text-uppercase pull-right margin-top-15">go</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     </div>
   );
 }
