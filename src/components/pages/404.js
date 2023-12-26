@@ -1,16 +1,6 @@
 function Error() {
     return (
         <main className="404-page">
-                    <section className="breadcrumb-container paira-margin-bottom-3">
-                        <div className="breadcrumb">
-                            <div className="container-fluid padding-fix">
-                                <ul className="list-inline">
-                                    <li><a href="#">Home <i className="fa fa-angle-right"></i></a></li>
-                                    <li>404</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
                     <section className="error-content paira-margin-bottom-3">
                         <div className="container">
                             <div className="row">

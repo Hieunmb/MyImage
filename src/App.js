@@ -1,4 +1,5 @@
 import {useLocation, Route, Routes } from 'react-router-dom';
+import BreadCrumb from './components/layouts/breadcrumb';
 import Error from './components/pages/404';
 import About from './components/pages/about';
 import Article from './components/pages/article';
@@ -17,10 +18,12 @@ import ResetPassword from './components/auth/reset-password';
 import Search from './components/pages/search';
 
 function App() {
+    const location = useLocation();
   return (
     <div className="App">
       <div class="paira-container pages-container">
       <Header></Header>
+      <BreadCrumb currentLocation={location.pathname} />
       <Routes>
         <Route path='/404' element={<Error/>}/>
         <Route path='/about' element={<About/>}/>
