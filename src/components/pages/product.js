@@ -43,6 +43,15 @@ function Product(){
                                         <option value="audi">320 x 320 px</option>
                                     </select>
                                 </div>
+                                <label className="margin-bottom-10 pull-left full-width margin-top-10">Frame :</label>
+                                <div className="arrow-d">
+                                    <select className="pro-select">
+                                        <option value="volvo">1024 x 1024 px</option>
+                                        <option value="saab">890 x 890 px</option>
+                                        <option value="mercedes">620 x 620 px</option>
+                                        <option value="audi">320 x 320 px</option>
+                                    </select>
+                                </div>
                             </div>
                             <div className="pull-left full-width margin-bottom-20">
                                 <label className="margin-bottom-10">Quantity :</label>
