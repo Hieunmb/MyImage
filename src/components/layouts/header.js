@@ -25,10 +25,10 @@ function Header() {
                                 <li>
                                     <a href="#" className="search-popup"><img src="assets/images/search.png" alt="" className=""/></a>
                                 </li>
-                                <li><a href="#" className="login-popup"><img src="assets/images/corg.png" alt="" className=""/></a></li>
                                 <li className="dropdown cart-menu-body">
                                     <a href="#"><img src="assets/images/shopping-bag.png" alt="" className="position-r"/><span className="span">2</span></a>
                                 </li>
+                                <li><a href="#" className="login-popup"><img style={{width:"40px"}} src="assets/images/blog/article-user.png" alt="" className=""/></a></li>
                             </ul>
                         </div>
                     </div>
