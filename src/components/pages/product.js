@@ -1,4 +1,22 @@
+import { useState } from "react";
+
 function Product(){
+    const [selectedSize, setSelectedSize] = useState('1024 x 1024 px');
+    const [imageWidth, setImageWidth] = useState('100%'); // Initial width
+
+    const handleSizeChange = (event) => {
+        const newSize = event.target.value;
+        setSelectedSize(newSize);
+
+        // Logic to change the image width based on the selected size
+        // Replace this logic with your implementation to map sizes to widths
+        const selectedOption = event.target.options[event.target.selectedIndex];
+
+    // Retrieve the width from the data attribute of the selected option
+    const newWidth = selectedOption.getAttribute('data-width');
+
+        setImageWidth(newWidth);
+    };
     return(
         <main className="product-page">
         <section className="single-product paira-margin-bottom-3">
@@ -8,21 +26,14 @@ function Product(){
                         <div className="paira-product single-varients-product">
                             <div className="position-r pull-left full-width margin-bottom-40">
                                 <div className="single-product-image paira-single-product-image">
-                                    <img src="assets/images/product/product-big-1.jpg" alt="" className="paira-product-image img-responsive"/>
+                                <img
+                                style={{ width: imageWidth, textAlign:'center' }} // Set the image width dynamically
+                                src="assets/images/product/product-big-1.jpg" // Replace with your image source
+                                alt=""
+                                className="paira-product-image img-responsive"
+                                />
                                 </div>
                                 <div className="single-product-container"></div>
-                            </div>
-                            <div className="position-r pull-left full-width small-verient-product">
-                                <div className="bx-carousel-fix">
-                                    <div className="single-product-image-list" id="paira-single-product-gallery">
-                                        <div><a href="#" data-image="assets/images/product/product-big-1.jpg"><img src="assets/images/product/product-big-1.jpg" alt="product-14" className="img-responsive center-block"/></a></div>
-                                        <div><a href="#" data-image="assets/images/product/product-big-2.jpg"><img src="assets/images/product/product-big-2.jpg" alt="product-15" className="img-responsive center-block"/></a></div>
-                                        <div><a href="#" data-image="assets/images/product/product-big.jpg"><img src="assets/images/product/product-big.jpg" alt="product-16" className="img-responsive center-block"/></a></div>
-                                        <div><a href="#" data-image="assets/images/product/product-big-1.jpg"><img src="assets/images/product/product-big-1.jpg" alt="product-14" className="img-responsive center-block"/></a></div>
-                                        <div><a href="#" data-image="assets/images/product/product-big-2.jpg"><img src="assets/images/product/product-big-2.jpg" alt="product-15" className="img-responsive center-block"/></a></div>
-                                    </div>
-                                </div>
-                                <div className="single-product-container-small"></div>
                             </div>
                         </div>
                     </div>
@@ -36,20 +47,20 @@ function Product(){
                             <div className="pull-left full-width margin-bottom-15">
                                 <label className="margin-bottom-10 pull-left full-width">Size :</label>
                                 <div className="arrow-d">
-                                    <select className="pro-select">
-                                        <option value="volvo">1024 x 1024 px</option>
-                                        <option value="saab">890 x 890 px</option>
-                                        <option value="mercedes">620 x 620 px</option>
-                                        <option value="audi">320 x 320 px</option>
+                                    <select className="pro-select" onChange={handleSizeChange}>
+                                    <option value="1024 x 1024 px" data-width="100%">1024 x 1024 px</option>
+                                    <option value="890 x 890 px" data-width="90%">890 x 890 px</option>
+                                    <option value="620 x 620 px" data-width="80%">620 x 620 px</option>
+                                    <option value="320 x 320 px" data-width="50%">320 x 320 px</option>
                                     </select>
                                 </div>
                                 <label className="margin-bottom-10 pull-left full-width margin-top-10">Frame :</label>
                                 <div className="arrow-d">
                                     <select className="pro-select">
-                                        <option value="volvo">1024 x 1024 px</option>
-                                        <option value="saab">890 x 890 px</option>
-                                        <option value="mercedes">620 x 620 px</option>
-                                        <option value="audi">320 x 320 px</option>
+                                    <option value="1024 x 1024 px" data-width="100%">1024 x 1024 px</option>
+                                    <option value="890 x 890 px" data-width="90%">890 x 890 px</option>
+                                    <option value="620 x 620 px" data-width="80%">620 x 620 px</option>
+                                    <option value="320 x 320 px" data-width="50%">320 x 320 px</option>
                                     </select>
                                 </div>
                             </div>
