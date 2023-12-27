@@ -40,7 +40,7 @@ function App() {
         <Route path='/reset-password' element={<ResetPassword/>}/>
         <Route path='/search' element={<Search/>}/>
       </Routes>
-      <Footer></Footer>
+      <Footer currentLocation={location.pathname}></Footer>
       </div>
       <div class="modal fade paira-search-popup search-pops" id="paira-search" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">

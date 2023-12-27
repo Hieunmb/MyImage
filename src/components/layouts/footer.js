@@ -1,9 +1,14 @@
 import React from "react";
+import { useLocation } from 'react-router-dom';
 
-function Footer() {
+function Footer({currentLocation}) {
+      // Get the current location
+    const location = useLocation();
+    // Check if the current path is '/'
+    const is404 = location.pathname === '/404'; 
     return (
     <footer>
-        <section className="footer-top">
+        <section className={`footer-top" ${is404 ? 'hide' : 'show'}`}>
             <div className="container">
                 <div className="row">
                     <div className="col-md-12 col-xs-12 col-sm-12">

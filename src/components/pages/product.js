@@ -51,24 +51,12 @@ function Product(){
                                      style={{ display: 'inline-block',
                                     width: imageWidth,
                                     border: '15px solid black',
-                                    boxShadow: '0 0 0 10px white inset',// Second border
+                                    boxShadow: '0 0 0 10px red inset',// Second border
                                     padding: '10px', // Adjust padding to maintain spacing
                                     }}
                                     src="assets/images/product/product-big-1.jpg" alt="Product" className="paira-product-image img-responsive"/>
                                 </div>
                                 <div className="single-product-container"></div>
-                            </div>
-                            <div className="position-r pull-left full-width small-verient-product">
-                                <div className="bx-carousel-fix">
-                                    <div className="single-product-image-list" id="paira-single-product-gallery">
-                                        <div><a href="#" data-image="assets/images/product/product-big-1.jpg"><img src="assets/images/product/product-big-1.jpg" alt="product-14" className="img-responsive center-block"/></a></div>
-                                        <div><a href="#" data-image="assets/images/product/product-big-2.jpg"><img src="assets/images/product/product-big-2.jpg" alt="product-15" className="img-responsive center-block"/></a></div>
-                                        <div><a href="#" data-image="assets/images/product/product-big.jpg"><img src="assets/images/product/product-big.jpg" alt="product-16" className="img-responsive center-block"/></a></div>
-                                        <div><a href="#" data-image="assets/images/product/product-big-1.jpg"><img src="assets/images/product/product-big-1.jpg" alt="product-14" className="img-responsive center-block"/></a></div>
-                                        <div><a href="#" data-image="assets/images/product/product-big-2.jpg"><img src="assets/images/product/product-big-2.jpg" alt="product-15" className="img-responsive center-block"/></a></div>
-                                    </div>
-                                </div>
-                                <div className="single-product-container-small"></div>
                             </div>
                         </div>
                     </div>
