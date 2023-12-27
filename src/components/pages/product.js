@@ -48,7 +48,7 @@ function Product(){
                             <div className="position-r pull-left full-width margin-bottom-40">
                                 <div className="single-product-image paira-single-product-image">
                                     <img id="productImage"
-                                     style={{ display: 'inline-block',
+                                     style={{
                                      textAlign:'center',
                                     width: imageWidth,
                                     border: '15px solid black',
