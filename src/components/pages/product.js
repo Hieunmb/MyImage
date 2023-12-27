@@ -1,4 +1,13 @@
+import { useState } from "react";
+
 function Product(){
+    const [selectedSize, setSelectedSize] = useState('1024 x 1024 px');
+
+    const handleSizeChange = (event) => {
+        setSelectedSize(event.target.value);
+        // Logic to change the displayed image based on the selected size
+        // You'll need to implement this logic based on your image data
+    };
     return(
         <main className="product-page">
         <section className="single-product paira-margin-bottom-3">
@@ -34,13 +43,24 @@ function Product(){
                                 <h3 className="margin-left-5 pull-left margin-top-0 margin-bottom-0">$80.00</h3>
                             </div>
                             <div className="pull-left full-width margin-bottom-15">
+                                <label className="margin-bottom-10 pull-left full-width">Frame :</label>
+                                <div className="arrow-d">
+                                    <select className="pro-select" onChange={handleSizeChange} value={selectedSize}>
+                                    <option value="1024 x 1024 px">Black Matte</option>
+                                    <option value="890 x 890 px">White</option>
+                                    <option value="620 x 620 px">Vintage Silver</option>
+                                    <option value="320 x 320 px">Walnut Flair</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="pull-left full-width margin-bottom-15">
                                 <label className="margin-bottom-10 pull-left full-width">Size :</label>
                                 <div className="arrow-d">
-                                    <select className="pro-select">
-                                        <option value="volvo">1024 x 1024 px</option>
-                                        <option value="saab">890 x 890 px</option>
-                                        <option value="mercedes">620 x 620 px</option>
-                                        <option value="audi">320 x 320 px</option>
+                                    <select className="pro-select" onChange={handleSizeChange} value={selectedSize}>
+                                    <option value="1024 x 1024 px">1024 x 1024 px</option>
+                                    <option value="890 x 890 px">890 x 890 px</option>
+                                    <option value="620 x 620 px">620 x 620 px</option>
+                                    <option value="320 x 320 px">320 x 320 px</option>
                                     </select>
                                 </div>
                             </div>
