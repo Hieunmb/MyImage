@@ -48,7 +48,8 @@ function Product(){
                             <div className="position-r pull-left full-width margin-bottom-40">
                                 <div className="single-product-image paira-single-product-image">
                                     <img id="productImage"
-                                     style={{ display: 'inline-block',
+                                     style={{
+                                     textAlign:'center',
                                     width: imageWidth,
                                     border: '15px solid black',
                                     boxShadow: '0 0 0 10px red inset',// Second border
@@ -91,10 +92,10 @@ function Product(){
                                 <label className="margin-bottom-10 pull-left full-width margin-top-10">Hanger :</label>
                                 <div className="arrow-d">
                                     <select className="pro-select">
-                                        <option value="volvo">1024 x 1024 px</option>
-                                        <option value="saab">890 x 890 px</option>
-                                        <option value="mercedes">620 x 620 px</option>
-                                        <option value="audi">320 x 320 px</option>
+                                    <option value="1024 x 1024 px" data-width="100%">1024 x 1024 px</option>
+                                    <option value="890 x 890 px" data-width="90%">890 x 890 px</option>
+                                    <option value="620 x 620 px" data-width="80%">620 x 620 px</option>
+                                    <option value="320 x 320 px" data-width="50%">320 x 320 px</option>
                                     </select>
                                 </div>
                             </div>
