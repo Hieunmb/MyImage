@@ -2,11 +2,41 @@ import { useState } from "react";
 
 function Product(){
     const [selectedSize, setSelectedSize] = useState('1024 x 1024 px');
-
+    const [imageWidth, setImageWidth] = useState('100%'); // Initial width
     const handleSizeChange = (event) => {
-        setSelectedSize(event.target.value);
-        // Logic to change the displayed image based on the selected size
-        // You'll need to implement this logic based on your image data
+        const newSize = event.target.value;
+        setSelectedSize(newSize);
+    
+        // Get the selected option element
+        const selectedOption = event.target.options[event.target.selectedIndex];
+    
+        // Retrieve the width from the data attribute of the selected option
+        const newWidth = selectedOption.getAttribute('data-width');
+        
+        setImageWidth(newWidth);
+    };
+    const handleChange = (event) => {
+        const selectedOption = event.target.value;
+        const productImage = document.getElementById('productImage');
+
+        // Logic to set border color based on the selected option
+        switch (selectedOption) {
+            case 'Black':
+                productImage.style.borderColor = '#000';
+                break;
+            case 'Orange':
+                productImage.style.borderColor = 'orange';
+                break;
+            case 'Silver':
+                productImage.style.borderColor = 'silver';
+                break;
+            case 'Walnut Flair':
+                productImage.style.borderColor = 'brown';
+                break;
+            default:
+                productImage.style.borderColor = '#000';
+                break;
+        }
     };
     return(
         <main className="product-page">
@@ -17,7 +47,14 @@ function Product(){
                         <div className="paira-product single-varients-product">
                             <div className="position-r pull-left full-width margin-bottom-40">
                                 <div className="single-product-image paira-single-product-image">
-                                    <img src="assets/images/product/product-big-1.jpg" alt="" className="paira-product-image img-responsive"/>
+                                    <img id="productImage"
+                                     style={{ display: 'inline-block',
+                                    width: imageWidth,
+                                    border: '15px solid black',
+                                    boxShadow: '0 0 0 10px white inset',// Second border
+                                    padding: '10px', // Adjust padding to maintain spacing
+                                    }}
+                                    src="assets/images/product/product-big-1.jpg" alt="Product" className="paira-product-image img-responsive"/>
                                 </div>
                                 <div className="single-product-container"></div>
                             </div>
@@ -45,25 +82,25 @@ function Product(){
                             <div className="pull-left full-width margin-bottom-15">
                                 <label className="margin-bottom-10 pull-left full-width">Frame :</label>
                                 <div className="arrow-d">
-                                    <select className="pro-select" onChange={handleSizeChange} value={selectedSize}>
-                                    <option value="1024 x 1024 px">Black Matte</option>
-                                    <option value="890 x 890 px">White</option>
-                                    <option value="620 x 620 px">Vintage Silver</option>
-                                    <option value="320 x 320 px">Walnut Flair</option>
+                                    <select className="pro-select" onChange={handleChange}>
+                                    <option value="Black">Black Matte</option>
+                                    <option value="Orange">Orange</option>
+                                    <option value="Silver">Vintage Silver</option>
+                                    <option value="Walnut Flair">Walnut Flair</option>
                                     </select>
                                 </div>
                             </div>
                             <div className="pull-left full-width margin-bottom-15">
                                 <label className="margin-bottom-10 pull-left full-width">Size :</label>
-                                <div className="arrow-d">
-                                    <select className="pro-select" onChange={handleSizeChange} value={selectedSize}>
-                                    <option value="1024 x 1024 px">1024 x 1024 px</option>
-                                    <option value="890 x 890 px">890 x 890 px</option>
-                                    <option value="620 x 620 px">620 x 620 px</option>
-                                    <option value="320 x 320 px">320 x 320 px</option>
-                                    </select>
-                                </div>
-                                <label className="margin-bottom-10 pull-left full-width margin-top-10">Frame :</label>
+                                 <div className="arrow-d">
+                                     <select className="pro-select" onChange={handleSizeChange}>
+                                       <option value="1024 x 1024 px" data-width="100%">1024 x 1024 px</option>
+                                          <option value="890 x 890 px" data-width="90%">890 x 890 px</option>
+                                          <option value="620 x 620 px" data-width="80%">620 x 620 px</option>
+                                          <option value="320 x 320 px" data-width="50%">320 x 320 px</option>
+                                        </select>
+                                 </div>
+                                <label className="margin-bottom-10 pull-left full-width margin-top-10">Hanger :</label>
                                 <div className="arrow-d">
                                     <select className="pro-select">
                                         <option value="volvo">1024 x 1024 px</option>
