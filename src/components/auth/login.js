@@ -1,17 +1,6 @@
 function Login(){
     return(
         <main className="login-page">
-        <section className="breadcrumb-container paira-margin-bottom-3">
-            <div className="breadcrumb">
-                <div className="container-fluid padding-fix">
-                    <ul className="list-inline">
-                        <li><a href="#">Home</a></li>
-                        <li>-</li>
-                        <li>Login</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
         <section className="login-content paira-margin-bottom-3">
             <div className="container">
                 <div className="row">

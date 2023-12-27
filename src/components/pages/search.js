@@ -1,16 +1,6 @@
 function Search(){
     return(
         <main className="search-page">
-        <section className="breadcrumb-container paira-margin-bottom-3">
-            <div className="breadcrumb">
-                <div className="container-fluid padding-fix">
-                    <ul className="list-inline">
-                        <li><a href="#">Home <i className="fa fa-angle-right"></i></a></li>
-                        <li>Collection</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
         <section className="search-result latest-picture paira-margin-bottom-3">
             <div className="container">
                 <div className="row">

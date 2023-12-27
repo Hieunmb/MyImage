@@ -1,17 +1,6 @@
 function About() {
     return (
         <main className="about-page">
-                    <section className="breadcrumb-container paira-margin-bottom-3">
-                        <div className="breadcrumb">
-                            <div className="container-fluid padding-fix">
-                                <ul className="list-inline">
-                                    <li><a href="#">Home</a></li>
-                                    <li>-</li>
-                                    <li>About us</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
                     <section className="about-content paira-margin-bottom-3">
                         <div className="container">
                             <div className="row">

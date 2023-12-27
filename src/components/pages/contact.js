@@ -1,17 +1,6 @@
 function Contact() {
     return (
         <main className="contact-page">
-                <section className="breadcrumb-container paira-margin-bottom-3">
-                    <div className="breadcrumb">
-                        <div className="container-fluid padding-fix">
-                            <ul className="list-inline">
-                                <li><a href="#">Home</a></li>
-                                <li>-</li>
-                                <li>Contact</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
                 <section className="contact-detail paira-margin-bottom-3">
                     <div className="container">
                         <div className="row">
