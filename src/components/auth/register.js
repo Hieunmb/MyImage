@@ -1,4 +1,11 @@
+import { useState } from "react";
+
 function Register(){
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
     return(
         <main className="register-page">
         <section className="register-content paira-margin-bottom-3">
@@ -28,7 +35,14 @@ function Register(){
                                         </div>
                                         <div className="input-group margin-bottom-20">
                                             <span className="input-group-addon" id="basic-addon14">Password</span>
-                                            <input type="text" className="form-control" aria-describedby="basic-addon3"/>
+                                            <input
+                                                type={showPassword ? 'text' : 'password'}
+                                                className="form-control"
+                                                aria-describedby="basic-addon3"
+                                            />
+                                            <span style={{minWidth:"50px"}} className="input-group-addon eye-icon" onClick={togglePasswordVisibility}>
+                                                    <i className={showPassword ? "fas fa-eye-slash" : "fas fa-eye"}></i>
+                                                </span>
                                         </div>
                                         <div className="for-pass full-width">
                                             <a href="login.html" className="btn btn-primary btn-lg">Create An Account</a>
