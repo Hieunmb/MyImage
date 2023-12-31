@@ -45,7 +45,7 @@ function App() {
         <Route path='/search' element={<Search/>}/>
         <Route path='/canvas' element={<Canvas/>}/>
       </Routes>
-      <Footer></Footer>
+      <Footer currentLocation={location.pathname}></Footer>
       </div>
       <Searching/>
         <Cart></Cart>

@@ -1,6 +1,6 @@
 function Error() {
     return (
-        <main className="404-page">
+        <main style={{marginTop:"80px", marginBottom:"150px"}} className="404-page">
                     <section className="error-content paira-margin-bottom-3">
                         <div className="container">
                             <div className="row">

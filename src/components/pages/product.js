@@ -52,7 +52,7 @@ function Product(){
                                      textAlign:'center',
                                     width: imageWidth,
                                     border: '15px solid black',
-                                    boxShadow: '0 0 0 10px white inset',// Second border
+                                    boxShadow: '0 0 0 10px red inset',// Second border
                                     padding: '10px', // Adjust padding to maintain spacing
                                     }}
                                     src="assets/images/product/product-big-1.jpg" alt="Product" className="paira-product-image img-responsive"/>

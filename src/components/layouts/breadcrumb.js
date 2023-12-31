@@ -6,7 +6,7 @@ function BreadCrumb({ currentLocation }) {
   const location = useLocation();
   
   // Check if the current path is '/'
-  const isHomePage = location.pathname === '/';       
+  const isHomePage = location.pathname === '/' || location.pathname === '/404';          
 
   let breadcrumbName = 'Default'; // Default name or any other initial value
 
@@ -14,9 +14,6 @@ function BreadCrumb({ currentLocation }) {
   switch (currentLocation) {
     case '/':
       breadcrumbName = 'Home';
-      break;
-    case '/404':
-      breadcrumbName = '404';
       break;
     case '/about':
       breadcrumbName = 'About Us';

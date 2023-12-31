@@ -1,4 +1,41 @@
+import { useState } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import url from "../../services/url";
+import api from "../../services/api";
 function Register(){
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+    const navigate = useNavigate();
+    const [user, setUser] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        address: '',
+        city:'',
+        password: '',
+    });
+    const [registerSuccess, setRegisterSuccess] = useState(false);
+
+    const handleChange = (e) => {
+        setUser({ ...user, [e.target.name]: e.target.value });
+    };
+
+    const formSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const registerResponse = await api.post(url.USER.REGISTER, user);
+            setRegisterSuccess(true);
+            setTimeout(() => {
+                window.alert('Register success!');
+                navigate('/login');
+            }, 2000);
+        } catch (error) {
+            console.log(error);
+        }
+    };
     return(
         <main className="register-page">
         <section className="register-content paira-margin-bottom-3">
@@ -10,28 +47,51 @@ function Register(){
                     <div className="col-md-6 col-xs-12 col-sm-6 margin-top-30">
                         <div className="form-contact">
                             <div className="row">
-                                <form accept-charset="UTF-8" action="#" className="contact-form" method="post">
+                                <form accept-charset="UTF-8" onSubmit={formSubmit} className="contact-form" method="POST">
                                     <div className="col-xs-12 col-md-12 col-sm-12">
                                         <input name="form_type" type="hidden" value="contact"/>
                                         <input name="utf8" type="hidden" value="✓"/>
                                         <div className="input-group margin-bottom-20">
-                                            <span className="input-group-addon" id="basic-addon15">First Name</span>
-                                            <input type="text" className="form-control" aria-describedby="basic-addon3"/>
+                                            <span className="input-group-addon" id="basic-addon15">Name</span>
+                                            <input type="text" onChange={handleChange} name="name"
+                                                value={user.name} className="form-control" aria-describedby="basic-addon3"/>
                                         </div>
                                         <div className="input-group margin-bottom-20">
-                                            <span className="input-group-addon" id="basic-addon16">Last Name</span>
-                                            <input type="text" className="form-control" aria-describedby="basic-addon3"/>
+                                            <span className="input-group-addon" id="basic-addon16">Email</span>
+                                            <input type="email" onChange={handleChange} name="email"
+                                                value={user.email} className="form-control" aria-describedby="basic-addon3"/>
                                         </div>
                                         <div className="input-group margin-bottom-20">
-                                            <span className="input-group-addon" id="basic-addon13">Email</span>
-                                            <input type="text" className="form-control" aria-describedby="basic-addon3"/>
+                                            <span className="input-group-addon" id="basic-addon13">Phone</span>
+                                            <input type="text" onChange={handleChange} name="phone"
+                                                value={user.phone} className="form-control" aria-describedby="basic-addon3"/>
+                                        </div>
+                                        <div className="input-group margin-bottom-20">
+                                            <span className="input-group-addon" id="basic-addon13">Address</span>
+                                            <input type="text" onChange={handleChange} name="address"
+                                                value={user.address} className="form-control" aria-describedby="basic-addon3"/>
+                                        </div>
+                                        <div className="input-group margin-bottom-20">
+                                            <span className="input-group-addon" id="basic-addon13">City</span>
+                                            <input type="text" onChange={handleChange} name="city"
+                                                value={user.city} className="form-control" aria-describedby="basic-addon3"/>
                                         </div>
                                         <div className="input-group margin-bottom-20">
                                             <span className="input-group-addon" id="basic-addon14">Password</span>
-                                            <input type="text" className="form-control" aria-describedby="basic-addon3"/>
+                                            <input
+                                            name="password"
+                                            onChange={handleChange}
+                                            value={user.password}
+                                                type={showPassword ? 'text' : 'password'}
+                                                className="form-control"
+                                                aria-describedby="basic-addon3"
+                                            />
+                                            <span style={{minWidth:"50px"}} className="input-group-addon eye-icon" onClick={togglePasswordVisibility}>
+                                                    <i className={showPassword ? "fas fa-eye-slash" : "fas fa-eye"}></i>
+                                                </span>
                                         </div>
                                         <div className="for-pass full-width">
-                                            <a href="login.html" className="btn btn-primary btn-lg">Create An Account</a>
+                                            <button type="submit" className="btn btn-primary btn-lg">Create An Account</button>
                                         </div>
                                     </div>
                                 </form>
