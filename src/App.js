@@ -24,7 +24,7 @@ function App() {
     const location = useLocation();
   return (
     <div className="App">
-      <div class="paira-container pages-container">
+      <div className="paira-container pages-container">
       <Header></Header>
       <BreadCrumb currentLocation={location.pathname} />
       <Routes>

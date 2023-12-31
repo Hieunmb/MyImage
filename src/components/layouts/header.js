@@ -1,13 +1,37 @@
-import React from "react";
-import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useJwt } from "react-jwt";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function Header() {
+    const [customerName, setCustomerName] = useState("");
+    const { isExpired, isInvalid } = useJwt();
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem("accessToken");
+
+        try {
+            const decodedToken = JSON.parse(atob(token.split(".")[1]));
+
+            // Get the info student from token
+            const customerName = decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
+            
+            setCustomerName(customerName);
+        } catch (error) {
+
+        }
+    }, [isExpired, isInvalid]);
+
+    const handleLogout = () => {
+        localStorage.removeItem("accessToken");
+        setCustomerName("");
+    };
      // Get the current location
   const location = useLocation();
   
   // Check if the current path is '/'
   const isHomePage = location.pathname === '/';
-
     return(
     <header>
         <section className="header-top">
@@ -28,7 +52,19 @@ function Header() {
                                 <li className="dropdown cart-menu-body">
                                     <a href="#"><img src="assets/images/shopping-bag.png" alt="" className="position-r"/><span className="span">2</span></a>
                                 </li>
-                                <li><a href="#" className="login-popup"><img style={{width:"40px"}} src="assets/images/blog/article-user.png" alt="" className=""/></a></li>
+                                <li><a href="#" data-toggle="dropdown" className="login-popup">
+                                <img style={{width:"40px"}} src="assets/images/blog/article-user.png" alt="" className=""/>
+                                <span style={{ marginLeft: '10px' }}>{decodeURIComponent(escape(customerName))}</span>
+                                </a>
+                                <ul className="dropdown-menu" style={{marginLeft:'250px',backgroundColor:"#c2a476"}}>
+                                    <li>
+                                    <Link to="/profile">Profile</Link>
+                                    </li>
+                                    <li>
+                                    <Link to="/login" onClick={handleLogout}><i className="fa fa-arrow-right"></i>Log Out</Link>
+                                    </li>
+                                </ul>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -36,52 +72,52 @@ function Header() {
             </div>
         </section>
         <section className={`header-middle paira-margin-bottom-2 ${isHomePage ? 'show' : 'hide'}`}>
-            <div class="main-slider paira-animation-container">
-                <div id="Carousel" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="item active">
+            <div className="main-slider paira-animation-container">
+                <div id="Carousel" className="carousel slide" data-ride="carousel">
+                    <div className="carousel-inner">
+                        <div className="item active">
                             <img alt="First slide" src="../assets/images/slider/slider-1.jpg"/>
-                            <div class="container">
-                                <div class="carousel-caption carousel-caption1">
-                                    <h1 class="text-capitalize margin-bottom-20 paira-animation" data-paira-animation="fadeInLeft" data-paira-animation-delay="0.2s">Unique Art</h1>
-                                    <h1 class="text-capitalize margin-bottom-20 margin-top-0 paira-animation" data-paira-animation="fadeInLeft" data-paira-animation-delay="0.5s">& Paint For Sale</h1>
-                                    <a href="product.html" class="btn btn-primary btn-lg paira-animation" data-paira-animation="fadeInUp" data-paira-animation-delay="0.8s">Show Now</a>
+                            <div className="container">
+                                <div className="carousel-caption carousel-caption1">
+                                    <h1 className="text-capitalize margin-bottom-20 paira-animation" data-paira-animation="fadeInLeft" data-paira-animation-delay="0.2s">Unique Art</h1>
+                                    <h1 className="text-capitalize margin-bottom-20 margin-top-0 paira-animation" data-paira-animation="fadeInLeft" data-paira-animation-delay="0.5s">& Paint For Sale</h1>
+                                    <a href="product.html" className="btn btn-primary btn-lg paira-animation" data-paira-animation="fadeInUp" data-paira-animation-delay="0.8s">Show Now</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
+                        <div className="item">
                             <img alt="Second slide" src="../assets/images/slider/slider-2.jpg"/>
-                            <div class="container">
-                                <div class="carousel-caption carousel-caption3">
-                                    <h1 class="text-capitalize margin-bottom-20 paira-animation" data-paira-animation="fadeInRight" data-paira-animation-delay="0.2s">Unique Art</h1>
-                                    <h1 class="text-capitalize margin-bottom-20 margin-top-0 paira-animation" data-paira-animation="fadeInRight" data-paira-animation-delay="0.5s">& Paint For Sale</h1>
-                                    <a href="product.html" class="btn btn-primary btn-lg paira-animation" data-paira-animation="fadeInUp" data-paira-animation-delay="0.8s">Show Now</a>
+                            <div className="container">
+                                <div className="carousel-caption carousel-caption3">
+                                    <h1 className="text-capitalize margin-bottom-20 paira-animation" data-paira-animation="fadeInRight" data-paira-animation-delay="0.2s">Unique Art</h1>
+                                    <h1 className="text-capitalize margin-bottom-20 margin-top-0 paira-animation" data-paira-animation="fadeInRight" data-paira-animation-delay="0.5s">& Paint For Sale</h1>
+                                    <a href="product.html" className="btn btn-primary btn-lg paira-animation" data-paira-animation="fadeInUp" data-paira-animation-delay="0.8s">Show Now</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
+                        <div className="item">
                             <img alt="Third slide" src="../assets/images/slider/slider-3.jpg"/>
-                            <div class="container">
-                                <div class="carousel-caption carousel-caption2">
-                                    <h1 class="text-capitalize margin-bottom-20 paira-animation"
+                            <div className="container">
+                                <div className="carousel-caption carousel-caption2">
+                                    <h1 className="text-capitalize margin-bottom-20 paira-animation"
                                         data-paira-animation="fadeInRight" data-paira-animation-delay="0.2s">Unique Art
                                     </h1>
-                                    <h1 class="text-capitalize margin-bottom-20 margin-top-0 paira-animation"
+                                    <h1 className="text-capitalize margin-bottom-20 margin-top-0 paira-animation"
                                         data-paira-animation="fadeInRight" data-paira-animation-delay="0.5s">& Paint For Sale
                                     </h1>
-                                    <a href="product.html" class="btn btn-primary btn-lg paira-animation" data-paira-animation="fadeInUp" data-paira-animation-delay="0.8s">Show Now</a>
+                                    <a href="product.html" className="btn btn-primary btn-lg paira-animation" data-paira-animation="fadeInUp" data-paira-animation-delay="0.8s">Show Now</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <a class="left carousel-control paira-animation" href="#Carousel" data-slide="prev" data-paira-animation="fadeIn" data-paira-animation-delay="0.0ms"><span>PR<br/>EV</span></a>
-                    <a class="right carousel-control paira-animation" href="#Carousel" data-slide="next" data-paira-animation="fadeIn" data-paira-animation-delay="0.10ms"><span>NE<br/>XT</span></a>
-                    <ol class="carousel-indicators">
-                        <li data-target="#Carousel" data-slide-to="0" class="active">01</li>
+                    <a className="left carousel-control paira-animation" href="#Carousel" data-slide="prev" data-paira-animation="fadeIn" data-paira-animation-delay="0.0ms"><span>PR<br/>EV</span></a>
+                    <a className="right carousel-control paira-animation" href="#Carousel" data-slide="next" data-paira-animation="fadeIn" data-paira-animation-delay="0.10ms"><span>NE<br/>XT</span></a>
+                    <ol className="carousel-indicators">
+                        <li data-target="#Carousel" data-slide-to="0" className="active">01</li>
                         <li data-target="#Carousel" data-slide-to="1">02</li>
                         <li data-target="#Carousel" data-slide-to="2">03</li>
                     </ol>
-                    <span class="carousel-indicators-total"></span>
+                    <span className="carousel-indicators-total"></span>
                 </div>
             </div>
         </section>
