@@ -5,5 +5,11 @@ const url ={
         REGISTER:"/User/register",
         PROFILE:"/User/profile",
     },
+    IMAGE:{
+        GET:"/Image",
+        POST:"/Image",
+        PUT:"/Image",
+        DELETE:"/Image",
+    }
 }
 export default url;

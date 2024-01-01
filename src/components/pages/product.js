@@ -1,7 +1,10 @@
 import { useState } from "react";
+import api from "../../services/api";
+import url from "../../services/url";
 
 function Product(){
-    const [selectedSize, setSelectedSize] = useState('1024 x 1024 px');
+    const [price, setPrice] = useState(80.00);
+    const [selectedSize, setSelectedSize] = useState('10x12');
     const [imageWidth, setImageWidth] = useState('100%'); // Initial width
     const handleSizeChange = (event) => {
         const newSize = event.target.value;
@@ -15,26 +18,67 @@ function Product(){
         
         setImageWidth(newWidth);
     };
+    const [uploadedImage, setUploadedImage] = useState(null);
+
+    const handleImageUpload = (event) => {
+        const imageFile = event.target.files[0];
+        const imageUrl = URL.createObjectURL(imageFile);
+        setUploadedImage(imageUrl);
+    };
+    const addToCart = () => {
+        if (uploadedImage) {
+            const formData = new FormData();
+            formData.append("thumbnail", uploadedImage);
+            formData.append("frame_id", 1);
+            formData.append("material_id", 1);
+            formData.append("size_id",  1);
+            formData.append("quantity", 1);
+            api.post(url.IMAGE.POST, formData)
+                .then((response) => {
+                    // Handle successful image upload
+                    console.log("Image uploaded successfully!", response.data);
+                })
+                .catch((error) => {
+                    // Handle error
+                    console.error("Error uploading image:", error);
+                });
+        } else {
+            // Handle case where no image is uploaded
+            console.log("No image uploaded");
+        }
+    };
+
+
     const handleChange = (event) => {
         const selectedOption = event.target.value;
         const productImage = document.getElementById('productImage');
 
         // Logic to set border color based on the selected option
         switch (selectedOption) {
-            case 'Black':
-                productImage.style.borderColor = '#000';
+            case 'None':
+                setPrice(80.00);
+                productImage.style.borderColor = 'white';
+                productImage.style.boxShadow="0 0 0 10px white inset"
                 break;
-            case 'Orange':
-                productImage.style.borderColor = 'orange';
+            case 'Black':
+                setPrice(80.00);
+                productImage.style.borderColor = '#000';
+                productImage.style.boxShadow="0 0 0 10px #333333 inset"
                 break;
             case 'Silver':
-                productImage.style.borderColor = 'silver';
+                setPrice(90.00);
+                productImage.style.borderColor = '#b3b3b3';
+                productImage.style.boxShadow="0 0 0 10px #333333 inset"
                 break;
             case 'Walnut Flair':
-                productImage.style.borderColor = 'brown';
+                setPrice(100.00);
+                productImage.style.borderColor = '#A0522D';
+                productImage.style.boxShadow="0 0 0 10px #8B4513 inset"
                 break;
             default:
-                productImage.style.borderColor = '#000';
+                setPrice(80.00);
+                productImage.style.borderColor = 'white';
+                productImage.style.boxShadow="0 0 0 10px white inset"
                 break;
         }
     };
@@ -51,29 +95,38 @@ function Product(){
                                      style={{
                                      textAlign:'center',
                                     width: imageWidth,
-                                    border: '15px solid black',
-                                    boxShadow: '0 0 0 10px red inset',// Second border
+                                    border: '15px solid white',
+                                    boxShadow: '0 0 0 10px white inset',// Second border
                                     padding: '10px', // Adjust padding to maintain spacing
                                     }}
-                                    src="assets/images/product/product-big-1.jpg" alt="Product" className="paira-product-image img-responsive"/>
+                                    src={uploadedImage ? uploadedImage : "assets/images/product/product-big-1.jpg"}
+                                    alt="Uploaded" className="paira-product-image img-responsive"/>
                                 </div>
                                 <div className="single-product-container"></div>
                             </div>
+                        </div>
+                        <div className="pull-left full-width margin-bottom-15">
+                            <label className="margin-bottom-10 pull-left full-width">Upload Image:</label>
+                         <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageUpload}
+                                style={{ marginBottom: "10px" }}
+                         />
                         </div>
                     </div>
                     <div className="col-md-7 col-sm-12 col-xs-12">
                         <div className="product-detles">
                             <h1 className="full-width text-capitalize margin-bottom-15 margin-clear">Sleep women with water color</h1>
                             <div className="full-width pull-left margin-bottom-15">
-                                <h3 className="margin-right-5 pull-left margin-top-0 margin-bottom-0 del"><del className="margin-clear"><span className="money margin-clear">$200.00</span></del></h3>
-                                <h3 className="margin-left-5 pull-left margin-top-0 margin-bottom-0">$80.00</h3>
+                                <h3 className="margin-left-5 pull-left margin-top-0 margin-bottom-0">${price.toFixed(2)}</h3>
                             </div>
                             <div className="pull-left full-width margin-bottom-15">
                                 <label className="margin-bottom-10 pull-left full-width">Frame :</label>
                                 <div className="arrow-d">
                                     <select className="pro-select" onChange={handleChange}>
+                                    <option value="None">None</option>
                                     <option value="Black">Black Matte</option>
-                                    <option value="Orange">Orange</option>
                                     <option value="Silver">Vintage Silver</option>
                                     <option value="Walnut Flair">Walnut Flair</option>
                                     </select>
@@ -83,19 +136,17 @@ function Product(){
                                 <label className="margin-bottom-10 pull-left full-width">Size :</label>
                                  <div className="arrow-d">
                                      <select className="pro-select" onChange={handleSizeChange}>
-                                       <option value="1024 x 1024 px" data-width="100%">1024 x 1024 px</option>
-                                          <option value="890 x 890 px" data-width="90%">890 x 890 px</option>
-                                          <option value="620 x 620 px" data-width="80%">620 x 620 px</option>
-                                          <option value="320 x 320 px" data-width="50%">320 x 320 px</option>
+                                     <option value="10x15" data-width="100%">10x15</option>
+                                    <option value="10x12" data-width="70%">10x12</option>
+                                    <option value="6x8" data-width="50%">6x8</option>
+                                    <option value="4x6" data-width="40%">4x6</option>
                                         </select>
                                  </div>
                                 <label className="margin-bottom-10 pull-left full-width margin-top-10">Hanger :</label>
                                 <div className="arrow-d">
                                     <select className="pro-select">
-                                    <option value="1024 x 1024 px" data-width="100%">1024 x 1024 px</option>
-                                    <option value="890 x 890 px" data-width="90%">890 x 890 px</option>
-                                    <option value="620 x 620 px" data-width="80%">620 x 620 px</option>
-                                    <option value="320 x 320 px" data-width="50%">320 x 320 px</option>
+                                    <option value="10x15" data-width="100%">None</option>
+                                    <option value="10x15" data-width="100%">Hanger set</option>
                                     </select>
                                 </div>
                             </div>
@@ -111,7 +162,7 @@ function Product(){
                                     </div>
                                 </div>
                             </div>
-                            <a href="#" className="product-cart-con btn btn-primary btn-lg text-capitalize margin-bottom-30">Add To Cart</a>
+                            <button className="product-cart-con btn btn-primary btn-lg text-capitalize margin-bottom-30" onClick={addToCart}>Add To Cart</button>
                         </div>
                         <div className="tabs margin-bottom-30">
                             <ul className="nav nav-tabs single-product-tabs product-tabs text-center">
