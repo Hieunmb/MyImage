@@ -38,7 +38,7 @@ function Header() {
             <div className="container-fluid padding-fix">
                 <div className="row">
                     <div className="pull-left logo col-md-3 col-sm-3 col-xs-4">
-                        <a href="index.html"><img src="assets/images/logo.png" alt="" className="pull-left"/></a>
+                        <a href="/"><img src="assets/images/logo.png" alt="" className="pull-left"/></a>
                     </div>
                     <div className="text-center col-md-6 col-sm-6 col-xs-4">
                         <a href="#" className="menu-pops"><img src="assets/images/menu-plus.png" alt="" className="margin-right-10 img-hover"/><img src="assets/images/menu-plus-hover.png" alt="" className="margin-right-10 img-hovers"/><span className="text-uppercase">MENU</span></a>
