@@ -6,6 +6,19 @@ function Product(){
     const [price, setPrice] = useState(80.00);
     const [selectedSize, setSelectedSize] = useState('10x12');
     const [imageWidth, setImageWidth] = useState('100%'); // Initial width
+    const [quantity, setQuantity] = useState(1);
+
+    // Other existing code...
+
+    const increaseQuantity = () => {
+        setQuantity(prevQuantity => prevQuantity + 1);
+    };
+
+    const decreaseQuantity = () => {
+        if (quantity > 1) {
+            setQuantity(prevQuantity => prevQuantity - 1);
+        }
+    };
     const handleSizeChange = (event) => {
         const newSize = event.target.value;
         setSelectedSize(newSize);
@@ -32,11 +45,12 @@ function Product(){
             formData.append("frame_id", 1);
             formData.append("material_id", 1);
             formData.append("size_id",  1);
-            formData.append("quantity", 1);
+            formData.append("quantity", quantity);
             api.post(url.IMAGE.POST, formData)
                 .then((response) => {
                     // Handle successful image upload
                     console.log("Image uploaded successfully!", response.data);
+                    console.log(formData);
                 })
                 .catch((error) => {
                     // Handle error
@@ -84,6 +98,7 @@ function Product(){
     };
     return(
         <main className="product-page">
+            <form method="post">
         <section className="single-product paira-margin-bottom-3">
             <div className="container">
                 <div className="row">
@@ -154,16 +169,17 @@ function Product(){
                                 <label className="margin-bottom-10">Quantity :</label>
                                 <div className="quentity">
                                     <div className="product_quantity_group product-quantity-fix">
-                                        <input type="text" className="form-control text-center pull-left font-size-16" value="2"/>
+                                        <input type="text" className="form-control text-center pull-left font-size-16" value={quantity}/>
                                         <div className="up-down text-center pull-left overflow">
-                                            <span className="up" data-direction="up"><i className="fa fa-angle-up"></i></span>
-                                            <span className="down" data-direction="down"><i className="fa fa-angle-down"></i></span>
+                                            <span className="up" data-direction="up"><i className="fa fa-angle-up" onClick={increaseQuantity}></i></span>
+                                            <span className="down" data-direction="down"><i className="fa fa-angle-down" onClick={decreaseQuantity}></i></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <button className="product-cart-con btn btn-primary btn-lg text-capitalize margin-bottom-30" onClick={addToCart}>Add To Cart</button>
                         </div>
+
                         <div className="tabs margin-bottom-30">
                             <ul className="nav nav-tabs single-product-tabs product-tabs text-center">
                                 <li className="active"><a href="#description" className="text-capitalize" data-toggle="tab">Description</a></li>
@@ -199,6 +215,7 @@ function Product(){
                 </div>
             </div>
         </section>
+        </form>
         <section className="related-product latest-picture heading-title  paira-margin-bottom-3">
             <div className="container">
                 <div className="row">
