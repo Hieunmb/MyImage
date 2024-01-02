@@ -53,8 +53,8 @@ function Header() {
                                     <a href="#"><img src="assets/images/shopping-bag.png" alt="" className="position-r"/><span className="span">2</span></a>
                                 </li>
                                 <li><a href="#" data-toggle="dropdown" className="login-popup">
-                                <img style={{width:"40px"}} src="assets/images/blog/article-user.png" alt="" className=""/>
-                                <span style={{ marginLeft: '10px' }}>{decodeURIComponent(escape(customerName))}</span>
+                                <img style={{width:"35px"}} src="assets/images/blog/article-user.png" alt="" className=""/>
+                                <span style={{ marginLeft: '5px' }}>{decodeURIComponent(escape(customerName))}</span>
                                 </a>
                                 <ul className="dropdown-menu" style={{marginLeft:'250px',backgroundColor:"#c2a476"}}>
                                     <li>
