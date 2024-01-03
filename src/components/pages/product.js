@@ -125,10 +125,10 @@ function Product(){
                                 <label className="margin-bottom-10 pull-left full-width">Frame :</label>
                                 <div className="arrow-d">
                                     <select className="pro-select" onChange={handleChange}>
-                                    <option value="None">None</option>
-                                    <option value="Black">Black Matte</option>
-                                    <option value="Silver">Vintage Silver</option>
-                                    <option value="Walnut Flair">Walnut Flair</option>
+                                    <option type="radio" value="None">None</option>
+                                    <option type="radio" value="Black">Black Matte</option>
+                                    <option type="radio" value="Silver">Vintage Silver</option>
+                                    <option type="radio" value="Walnut Flair">Walnut Flair</option>
                                     </select>
                                 </div>
                             </div>
