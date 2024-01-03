@@ -38,7 +38,7 @@ function App() {
         <Route path='/' element={<Index/>}/>
         <Route path='/list-collection' element={<ListCollection/>}/>
         <Route path='/login' element={<Login/>}/>
-        <Route path='/product:id' element={<Product/>}/>
+        <Route path='/product' element={<Product/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/reset-password' element={<ResetPassword/>}/>
         <Route path='/search' element={<Search/>}/>

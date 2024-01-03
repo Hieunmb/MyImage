@@ -38,14 +38,14 @@ function Index() {
                         <div className="col-sm-8 col-md-8 col-xs-12 margin-top-30">
                             <div className="product text-center">
                                 <div className="product-image position-r">
-                                    <a href="#">
+                                    <a href="/product">
                                         <div className="background-overlay"></div>
                                         <img src="assets/images/product/product-1.jpg" alt="" className="img-responsive"/>
                                     </a>
                                 </div>
                                 <div className="product-hover">
                                     <h2 className="margin-clear">20 items</h2>
-                                    <a href="collection.html" className="margin-top-10">- Shop The Collection -</a>
+                                    <a href="/product" className="margin-top-10">- Shop The Collection -</a>
                                 </div>
                             </div>
                         </div>
