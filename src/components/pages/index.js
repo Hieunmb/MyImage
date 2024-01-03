@@ -7,22 +7,22 @@ function Index() {
                     <div class="col-md-4 col-xs-12 col-sm-4">
                         <div class="banner-small-back">
                             <img src="../assets/images/icon.png" alt="" class="img-responsive pull-left"/>
-                            <h4 class="margin-clear text-capitalize margin-bottom-5"><a href="#">Free shipping</a></h4>
-                            <p class="margin-bottom-0 margin-top-5">Order now to receive incentives!</p>
+                            <h4 class="margin-clear text-capitalize margin-bottom-5"><a href="#">Shipping</a></h4>
+                            <p class="margin-bottom-0 margin-top-5">Fast, guaranteed shipping, worldwide.</p>
                         </div>
                     </div>
                     <div class="col-md-4 col-xs-12 col-sm-4">
                         <div class="banner-small-back">
                             <img src="../assets/images/icon-2.png" alt="" class="img-responsive pull-left"/>
-                            <h4 class="margin-clear text-capitalize margin-bottom-5"><a href="#">Free Frame</a></h4>
-                            <p class="margin-bottom-0 margin-top-5">Very much to look forward to</p>
+                            <h4 class="margin-clear text-capitalize margin-bottom-5"><a href="#">Quality</a></h4>
+                            <p class="margin-bottom-0 margin-top-5">Absolute commitment to product quality.</p>
                         </div>
                     </div>
                     <div class="col-md-4 col-xs-12 col-sm-4">
                         <div class="banner-small-back last">
                             <img src="../assets/images/icon-3.png" alt="" class="img-responsive pull-left"/>
-                            <h4 class="margin-clear text-capitalize margin-bottom-5"><a href="#">M.B Guarantee</a></h4>
-                            <p class="margin-bottom-0 margin-top-5">Absolutely reputable</p>
+                            <h4 class="margin-clear text-capitalize margin-bottom-5"><a href="#">Price</a></h4>
+                            <p class="margin-bottom-0 margin-top-5">Reasonable price, best on the market.</p>
                         </div>
                     </div>
                 </div>
