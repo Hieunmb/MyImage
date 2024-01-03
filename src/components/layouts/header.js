@@ -79,8 +79,8 @@ function Header() {
                             <img alt="First slide" src="../assets/images/slider/slider-1.jpg"/>
                             <div className="container">
                                 <div className="carousel-caption carousel-caption1">
-                                    <h1 className="text-capitalize margin-bottom-20 paira-animation" data-paira-animation="fadeInLeft" data-paira-animation-delay="0.2s">Unique Art</h1>
-                                    <h1 className="text-capitalize margin-bottom-20 margin-top-0 paira-animation" data-paira-animation="fadeInLeft" data-paira-animation-delay="0.5s">& Paint For Sale</h1>
+                                    <h1 className="text-capitalize margin-bottom-20 paira-animation" data-paira-animation="fadeInLeft" data-paira-animation-delay="0.2s">Start</h1>
+                                    <h1 className="text-capitalize margin-bottom-20 margin-top-0 paira-animation" data-paira-animation="fadeInLeft" data-paira-animation-delay="0.5s">your collection</h1>
                                     <a href="product.html" className="btn btn-primary btn-lg paira-animation" data-paira-animation="fadeInUp" data-paira-animation-delay="0.8s">Show Now</a>
                                 </div>
                             </div>
@@ -89,8 +89,8 @@ function Header() {
                             <img alt="Second slide" src="../assets/images/slider/slider-2.jpg"/>
                             <div className="container">
                                 <div className="carousel-caption carousel-caption3">
-                                    <h1 className="text-capitalize margin-bottom-20 paira-animation" data-paira-animation="fadeInRight" data-paira-animation-delay="0.2s">Unique Art</h1>
-                                    <h1 className="text-capitalize margin-bottom-20 margin-top-0 paira-animation" data-paira-animation="fadeInRight" data-paira-animation-delay="0.5s">& Paint For Sale</h1>
+                                    <h1 className="text-capitalize margin-bottom-20 paira-animation" data-paira-animation="fadeInRight" data-paira-animation-delay="0.2s">Posters</h1>
+                                    <h1 className="text-capitalize margin-bottom-20 margin-top-0 paira-animation" data-paira-animation="fadeInRight" data-paira-animation-delay="0.5s">& Prints</h1>
                                     <a href="product.html" className="btn btn-primary btn-lg paira-animation" data-paira-animation="fadeInUp" data-paira-animation-delay="0.8s">Show Now</a>
                                 </div>
                             </div>
@@ -100,10 +100,10 @@ function Header() {
                             <div className="container">
                                 <div className="carousel-caption carousel-caption2">
                                     <h1 className="text-capitalize margin-bottom-20 paira-animation"
-                                        data-paira-animation="fadeInRight" data-paira-animation-delay="0.2s">Unique Art
+                                        data-paira-animation="fadeInRight" data-paira-animation-delay="0.2s">The
                                     </h1>
                                     <h1 className="text-capitalize margin-bottom-20 margin-top-0 paira-animation"
-                                        data-paira-animation="fadeInRight" data-paira-animation-delay="0.5s">& Paint For Sale
+                                        data-paira-animation="fadeInRight" data-paira-animation-delay="0.5s">Perfect Present
                                     </h1>
                                     <a href="product.html" className="btn btn-primary btn-lg paira-animation" data-paira-animation="fadeInUp" data-paira-animation-delay="0.8s">Show Now</a>
                                 </div>

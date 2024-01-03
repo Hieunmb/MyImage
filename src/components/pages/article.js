@@ -9,23 +9,19 @@ function Article() {
                                             <img src="assets/images/blog/blog-big.jpg" alt="" className="img-responsive margin-bottom-30"/>
                                             <p className="brand-color">March 05, 2016</p>
                                             <h1 className="margin-top-5">Our paintis unique for all</h1>
-                                            <p className="margin-top-15">At quicum ioca seria, ut dicitur, quicum arcana, quicum occulta omnia? Idemne, quod iucunde? Hoc loco tenere se Triarius non potuit. Mihi vero, inquit, placet agi subtilius et, ut ipse dixisti, pressius. Beatus autem esse in maximarum rerum timore nemo potest. Ergo ita: non posse honeste vivi, nisi honeste vivatur? Est enim effectrix multarum et magnarum voluptatum. Beatus autem esse in maximarum rerum timore nemopotest.</p>
-                                            <p className="margin-top-15 margin-bottom-15">Itaque ad tempus ad Pisonem omnes. Sed quid attinet de rebus tam apertis plura requirere? Quamvis enim depravatae non sint, pravae tamen esse possunt. Non autem hoc: igitur ne illud quidem.</p>
-                                            <ul className="list-unstyled margin-bottom-15 lists">
-                                                <li> Cave putes quicquam esse verius.</li>
-                                                <li> Sed haec quidem liberius ab eo dicuntur et saepius.</li>
-                                                <li> Est autem officium, quod ita factum est, ut eius facti probabilis ratio reddi possit.</li>
-                                                <li> Solum praeterea formosum, solum liberum, solum civem, stultost; Sed ille, ut dixi, vitiose. Venit enim mihi Platonis.</li>
-                                            </ul>
-                                            <p className="margin-bottom-15">Ita ne hoc quidem modo paria peccata sunt. Omnis enim est natura diligens sui.</p>
+                                            <p className="margin-top-15">Story :</p>
+                                            <p className="margin-top-15 margin-bottom-15">There is a task that has been performed in such a way that a good reason can be given for its performance.</p>
+                                            <p className="margin-top-15 margin-bottom-15">Moreover, only beautiful people, only free people, only citizens are stupid; But he is, as I said, wicked. Because Plato came to me.So even in this way, they are not equal sins. Because the nature of every person is to love themselves.</p>
+                                            <p className="margin-top-15 margin-bottom-15">Highlights of the picture:</p>
+                                            <p className="margin-top-15 margin-bottom-15">Digital printing technology is increasingly developing because of increasing user needs. Nowadays people tend to like creativity. Especially in the fashion industry, it carries a strong personal impression.</p>
+                                            <p className="margin-top-15 margin-bottom-15">That's why UV printing technology on canvas was born to meet that need. Can create unique images and patterns on fabric. This uv printing technology has been chosen by the company to identify the brand through the logo or product image created.</p>
                                             <img src="assets/images/blog/blog-desc.jpg" alt="" className="img-responsive margin-bottom-15 center-block"/>
                                             <ul className="list-unstyled margin-bottom-15 lists">
-                                                <li> Cave putes quicquam esse verius.</li>
-                                                <li> Sed haec quidem liberius ab eo dicuntur et saepius.</li>
-                                                <li> Est autem officium, quod ita factum est, ut eius facti probabilis ratio reddi possit.</li>
-                                                <li> Solum praeterea formosum, solum liberum, solum civem, stultost; Sed ille, ut dixi, vitiose. Venit enim mihi Platonis.</li>
+                                                <li> The story about the painting</li>
+                                                <li> Although you tend to say this more. Then came Piso: What then? He does not limit his desires by the divisions of Epicurus, but by his own satisfaction. Because we will have to accept the institution of two lives. Do you think men and philosophers should talk differently? But I think there is no animal judgment. To whom is the name Tubuli not hated?</li>
+                                                <li> Technology creates works</li>
+                                                <li> Today mica is one of the most commonly used materials in many fields. Among them, the printing industry such as heat transfer printing, decal printing, and UV advertising printing is the field that uses mica the most. Mica is a flexible plastic with outstanding characteristics such as: smooth flat surface, diverse colors (nearly 30 colors), high durability, flexibility, easy bending, corrosion resistance...</li>
                                             </ul>
-                                            <p className="margin-clear">Quamquam tu hanc copiosiorem etiam soles dicere. Tum mihi Piso: Quid ergo? Cupiditates non Epicuri divisione finiebat, sed sua satietate for Nam et complectitur verbis, quod vult, et dicit plane, quod intellegam; Duarum enim vitarum nobis erunt instituta capienda. Aliter homines, aliter philosophos loqui putas oportere? Bestiarum vero nullum iudicium puto. Cui Tubuli nomen odio non est?</p>
                                             <hr className="margin-bottom-20 margin-top-30"/>
                                             <div className="col-md-6">
                                                 <div className="next-pre pull-left">
