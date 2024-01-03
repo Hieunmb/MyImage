@@ -1,11 +1,34 @@
 import { useState } from "react";
 import api from "../../services/api";
 import url from "../../services/url";
+import { useNavigate } from "react-router-dom";
 
 function Product(){
+    const navigate = useNavigate();
     const [price, setPrice] = useState(80.00);
     const [selectedSize, setSelectedSize] = useState('10x12');
     const [imageWidth, setImageWidth] = useState('100%'); // Initial width
+    const [quantity, setQuantity] = useState(1);
+    const [imageFile, setImageFile] = useState(null);
+    const [projects, setProjects] = useState({
+        thumbnail: "",
+        frame_id:1,
+        material_id: 1,
+        size_id: 1,
+        quantity:1,
+      });
+
+    // Other existing code...
+
+    const increaseQuantity = () => {
+        setQuantity(prevQuantity => prevQuantity + 1);
+    };
+
+    const decreaseQuantity = () => {
+        if (quantity > 1) {
+            setQuantity(prevQuantity => prevQuantity - 1);
+        }
+    };
     const handleSizeChange = (event) => {
         const newSize = event.target.value;
         setSelectedSize(newSize);
@@ -24,19 +47,29 @@ function Product(){
         const imageFile = event.target.files[0];
         const imageUrl = URL.createObjectURL(imageFile);
         setUploadedImage(imageUrl);
+        setImageFile(imageFile);
+        setProjects((prevProjects) => ({
+            ...prevProjects,
+            thumbnail: imageFile,
+        }));
     };
-    const addToCart = () => {
+    const formHandle = (event) => {
+        event.preventDefault(); // Prevent the default form submission behavior
+
+        // Your existing code for adding to cart with image upload
         if (uploadedImage) {
             const formData = new FormData();
-            formData.append("thumbnail", uploadedImage);
-            formData.append("frame_id", 1);
-            formData.append("material_id", 1);
-            formData.append("size_id",  1);
-            formData.append("quantity", 1);
+            formData.append("thumbnail", imageFile);
+            formData.append("frame_id", projects.frame_id);
+            formData.append("material_id", projects.material_id);
+            formData.append("size_id", projects.size_id);
+            formData.append("quantity", quantity);
+
             api.post(url.IMAGE.POST, formData)
                 .then((response) => {
                     // Handle successful image upload
-                    console.log("Image uploaded successfully!", response.data);
+                    window.alert('Add To Cart Success');
+                    navigate('/');
                 })
                 .catch((error) => {
                     // Handle error
@@ -84,35 +117,81 @@ function Product(){
     };
     return(
         <main className="product-page">
+            <form method='POST' onSubmit={formHandle}>
         <section className="single-product paira-margin-bottom-3">
             <div className="container">
                 <div className="row">
                     <div className="col-md-5 col-sm-12 col-xs-12">
                         <div className="paira-product single-varients-product">
-                            <div className="position-r pull-left full-width margin-bottom-40">
-                                <div className="single-product-image paira-single-product-image">
-                                    <img id="productImage"
-                                     style={{
-                                     textAlign:'center',
-                                    width: imageWidth,
-                                    border: '15px solid white',
-                                    boxShadow: '0 0 0 10px white inset',// Second border
-                                    padding: '10px', // Adjust padding to maintain spacing
-                                    }}
-                                    src={uploadedImage ? uploadedImage : "assets/images/product/product-big-1.jpg"}
-                                    alt="Uploaded" className="paira-product-image img-responsive"/>
-                                </div>
-                                <div className="single-product-container"></div>
-                            </div>
-                        </div>
-                        <div className="pull-left full-width margin-bottom-15">
-                            <label className="margin-bottom-10 pull-left full-width">Upload Image:</label>
-                         <input
-                                type="file"
-                                accept="image/*"
-                                onChange={handleImageUpload}
-                                style={{ marginBottom: "10px" }}
-                         />
+                        <div className="position-r pull-left full-width margin-bottom-40">
+    <div className="single-product-image paira-single-product-image">
+        <div style={{
+            position: 'relative',
+            display: 'inline-block'
+        }}>
+            <img
+                id="productImage"
+                style={{
+                    textAlign: 'center',
+                    width: imageWidth,
+                    border: '15px solid white',
+                    boxShadow: '0 0 0 10px white inset',
+                    padding: '10px'
+                }}
+                src={uploadedImage ? uploadedImage : "assets/images/product/product-big-1.jpg"}
+                alt="Uploaded"
+                className="paira-product-image img-responsive"
+            />
+{!uploadedImage && (
+    <div style={{ position: 'relative', textAlign: 'center' }}>
+        <input
+            className="input-file" 
+            id="my-file"
+            required
+            name="uploadedImage"
+            type="file"
+            onChange={handleImageUpload}
+            style={{
+                position: 'absolute',
+                bottom: '50%', // Adjust this value to center vertically
+                right: '50%', // Adjust this value to center horizontally
+                transform: 'translate(50%, 50%)', // Centering trick
+                padding: '5px 10px',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                opacity: '0', // Hide the original file input
+                zIndex: '1' // Ensure it's clickable
+            }}
+        />
+        <label
+            htmlFor="my-file"
+            style={{
+                position: 'absolute',
+                bottom: '225px', // Adjust this value to center vertically
+                right: '50%', // Adjust this value to center horizontally
+                transform: 'translate(50%, 50%)', // Centering trick
+                color: 'white',
+                display: 'inline-block',
+                padding: '14px 45px',
+                background: '#39D2B4',
+                color: '#fff',
+                fontSize: '1em',
+                transition: 'all .4s',
+                cursor: 'pointer',
+            }}
+        >
+            <i className="fa fa-upload"></i>
+               Upload File
+        </label>
+    </div>
+)}
+
+        </div>
+    </div>
+    <div className="single-product-container"></div>
+</div>
+
                         </div>
                     </div>
                     <div className="col-md-7 col-sm-12 col-xs-12">
@@ -154,16 +233,17 @@ function Product(){
                                 <label className="margin-bottom-10">Quantity :</label>
                                 <div className="quentity">
                                     <div className="product_quantity_group product-quantity-fix">
-                                        <input type="text" className="form-control text-center pull-left font-size-16" value="2"/>
+                                        <input type="text" className="form-control text-center pull-left font-size-16" value={quantity}/>
                                         <div className="up-down text-center pull-left overflow">
-                                            <span className="up" data-direction="up"><i className="fa fa-angle-up"></i></span>
-                                            <span className="down" data-direction="down"><i className="fa fa-angle-down"></i></span>
+                                            <span className="up" data-direction="up"><i className="fa fa-angle-up" onClick={increaseQuantity}></i></span>
+                                            <span className="down" data-direction="down"><i className="fa fa-angle-down" onClick={decreaseQuantity}></i></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button className="product-cart-con btn btn-primary btn-lg text-capitalize margin-bottom-30" onClick={addToCart}>Add To Cart</button>
+                            <button className="product-cart-con btn btn-primary btn-lg text-capitalize margin-bottom-30" type="submit">Add To Cart</button>
                         </div>
+
                         <div className="tabs margin-bottom-30">
                             <ul className="nav nav-tabs single-product-tabs product-tabs text-center">
                                 <li className="active"><a href="#description" className="text-capitalize" data-toggle="tab">Description</a></li>
@@ -199,6 +279,7 @@ function Product(){
                 </div>
             </div>
         </section>
+        </form>
         <section className="related-product latest-picture heading-title  paira-margin-bottom-3">
             <div className="container">
                 <div className="row">

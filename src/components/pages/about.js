@@ -13,16 +13,20 @@ function About() {
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="about-description">
-                                        <p className="margin-top-30">Portenta haec esse dicit, neque ea ratione ullo modo posse vivi; Cum sciret confestim esse moriendum eamque mortem ardentiore studio peteret, quam Epicurus voluptatem petendam putat. Eorum enim est haec querela, qui sibi cari sunt seseque diligunt. At iam decimum annum inttamen simplicia, vestra versuta. Graecum enim hunc versum nostis omnes-: Suavis laborum est praeteritorum memoria..</p>
-                                        <p className="margin-top-10 margin-bottom-15">Vitiosum est enim in dividendo partem in genere numerare. Atque ab his initiis profecti omnium virtutum et originem et progressionem persecuti sunt. Sed ille, ut dixi, vitiose. Quae cum dixisset paulumque institisset, Quid est? Quis istud, quaeso, nesciebat? Fortasse id optimum, sedubillud: Plus semper voluptatis? Sed ego in hoc resisto; Hos contra singulos dici est melius.
-                                        </p>
-                                        <ul className="list-unstyled margin-bottom-0 lists">
-                                            <li> Ergo ita: non posse honeste vivi, nisi honeste vivatur?</li>
-                                            <li> Summae mihi videtur inscitiae.</li>
-                                            <li> Non minor, inquit, voluptas percipitur ex vilissimis rebus quam ex pretiosissimis.</li>
-                                            <li> Verum tamen cum de rebus grandioribus dicas, ipsae res verba rapiunt;</li>
-                                            <li> Sed in rebus apertissimis nimium longi sumus.</li>
-                                        </ul>
+                                        <p className="margin-top-30">MyImage is a business specializing in high-end, economical printing services, established in 2015 in Hanoi.</p>
+                                        <p className="margin-top-10 margin-bottom-15">About human resources:</p>
+                                        <p className="margin-top-10 margin-bottom-15">The staff at MyImage are all skilled, highly qualified professionals with many years of experience in the printing industry.</p>
+                                        <p className="margin-top-10 margin-bottom-15">About technique and technology:</p>
+                                        <p className="margin-top-10 margin-bottom-15">MyImage always focuses on product quality, so it always focuses on upgrading and innovating technology, machinery, techniques...</p>
+                                        <p className="margin-top-10 margin-bottom-15">Some printing services at MyImage:</p>
+                                        <p className="margin-top-10 margin-bottom-15">+ Decor design and printing - providing decor products: canvas paintings with composite frames, canvas paintings with natural wooden frames, mirror paintings with wooden edges, mirror paintings with composite frames.</p>
+                                        <p className="margin-top-10 margin-bottom-15">+ Designing and printing accessories - providing mirror-coated fashion accessories: keychains, phone cases...</p>
+                                        <p className="margin-top-10 margin-bottom-15">+ Fast, cheap printing, on-demand printing of many other items.</p>
+                                        <p className="margin-top-10 margin-bottom-15">Sales agent</p>
+                                        <p className="margin-top-10 margin-bottom-15">With the goal of becoming the leading printing company in Vietnam, MyImage has collaborated and provided products to countless businesses selling decor products and communication and advertising services across the country such as: Titan decor shop, Shop Sticker Daily,...</p>
+                                        <p className="margin-top-10 margin-bottom-15">Some of Titan's retail customers include: fashion - accessories brand Helios, jewelry brand MDJ, fashion brand Made Extreme, YDA - Maid Cafe,...</p>
+                                        <p className="margin-top-10 margin-bottom-15">We are ready to help answer all questions 24/7 as well as quickly provide high quality products at the best prices.</p>
+                                      
                                     </div>
                                 </div>
                             </div>
