@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 function Product(){
     const navigate = useNavigate();
-    const [price, setPrice] = useState(80.00);
-    const [selectedSize, setSelectedSize] = useState('10x12');
+    const [price, setPrice] = useState(0.00);
+    const [selectedSize, setSelectedSize] = useState('10x15');
     const [imageWidth, setImageWidth] = useState('100%'); // Initial width
     const [quantity, setQuantity] = useState(1);
     const [imageFile, setImageFile] = useState(null);
@@ -29,17 +29,21 @@ function Product(){
             setQuantity(prevQuantity => prevQuantity - 1);
         }
     };
-    const handleSizeChange = (event) => {
-        const newSize = event.target.value;
+    const [selectedSizePrice, setSelectedSizePrice] = useState(25.00);
+    const handleSizeChange = (newSize) => {
         setSelectedSize(newSize);
-    
-        // Get the selected option element
-        const selectedOption = event.target.options[event.target.selectedIndex];
-    
-        // Retrieve the width from the data attribute of the selected option
-        const newWidth = selectedOption.getAttribute('data-width');
-        
-        setImageWidth(newWidth);
+        const sizeData = {
+            '10x15': { width: '100%', price: 25.00 },
+            '10x12': { width: '70%', price: 20.00 },
+            '6x8': { width: '50%', price: 15.00 },
+            '4x6': { width: '40%', price: 10.00 },
+            // Add other sizes as needed
+        };
+        const selectedSizeData = sizeData[newSize] || { width: '100%', price: 25.00 };
+
+        setImageWidth(selectedSizeData.width);
+        setSelectedSizePrice(selectedSizeData.price);
+
     };
     const [uploadedImage, setUploadedImage] = useState(null);
 
@@ -81,39 +85,29 @@ function Product(){
         }
     };
 
-
+    const [selectedOption, setSelectedOption] = useState('None');
     const handleChange = (event) => {
-        const selectedOption = event.target.value;
+        const newSelectedOption = event.target.value;
         const productImage = document.getElementById('productImage');
-
-        // Logic to set border color based on the selected option
-        switch (selectedOption) {
-            case 'None':
-                setPrice(80.00);
-                productImage.style.borderColor = 'white';
-                productImage.style.boxShadow="0 0 0 10px white inset"
-                break;
-            case 'Black':
-                setPrice(80.00);
-                productImage.style.borderColor = '#000';
-                productImage.style.boxShadow="0 0 0 10px #333333 inset"
-                break;
-            case 'Silver':
-                setPrice(90.00);
-                productImage.style.borderColor = '#b3b3b3';
-                productImage.style.boxShadow="0 0 0 10px #333333 inset"
-                break;
-            case 'Walnut Flair':
-                setPrice(100.00);
-                productImage.style.borderColor = '#A0522D';
-                productImage.style.boxShadow="0 0 0 10px #8B4513 inset"
-                break;
-            default:
-                setPrice(80.00);
-                productImage.style.borderColor = 'white';
-                productImage.style.boxShadow="0 0 0 10px white inset"
-                break;
-        }
+    
+        const optionStyles = {
+            None: { price: 0.00, borderColor: 'white', boxShadow: '0 0 0 10px white inset' },
+            Black: { price: 10.00, borderColor: '#000', boxShadow: '0 0 0 10px #333333 inset' },
+            Silver: { price: 15.00, borderColor: '#b3b3b3', boxShadow: '0 0 0 10px #333333 inset' },
+            'Walnut Flair': { price: 20.00, borderColor: '#A0522D', boxShadow: '0 0 0 10px #8B4513 inset' },
+        };
+    
+        const selectedStyle = optionStyles[newSelectedOption] || {
+            price: 80.00,
+            borderColor: 'white',
+            boxShadow: '0 0 0 10px white inset',
+        };
+    
+        setPrice(selectedStyle.price);
+        productImage.style.borderColor = selectedStyle.borderColor;
+        productImage.style.boxShadow = selectedStyle.boxShadow;
+    
+        setSelectedOption(newSelectedOption); // Update the selected option in state
     };
     return(
         <main className="product-page">
@@ -198,29 +192,111 @@ function Product(){
                         <div className="product-detles">
                             <h1 className="full-width text-capitalize margin-bottom-15 margin-clear">Sleep women with water color</h1>
                             <div className="full-width pull-left margin-bottom-15">
-                                <h3 className="margin-left-5 pull-left margin-top-0 margin-bottom-0">${price.toFixed(2)}</h3>
+                                <h3 className="margin-left-5 pull-left margin-top-0 margin-bottom-0">${(selectedSizePrice+price).toFixed(2)}</h3>
                             </div>
                             <div className="pull-left full-width margin-bottom-15">
                                 <label className="margin-bottom-10 pull-left full-width">Frame :</label>
-                                <div className="arrow-d">
-                                    <select className="pro-select" onChange={handleChange}>
-                                    <option type="radio" value="None">None</option>
-                                    <option type="radio" value="Black">Black Matte</option>
-                                    <option type="radio" value="Silver">Vintage Silver</option>
-                                    <option type="radio" value="Walnut Flair">Walnut Flair</option>
-                                    </select>
+                                <div className="frame-options">
+                                    <label className="radio-option" style={{marginRight:"15px"}}>
+                                        <input
+                                            style={{webkitAppearance:"auto"}}
+                                            type="radio"
+                                            value="None"
+                                            name="None"
+                                            checked={selectedOption === 'None'}
+                                            onChange={handleChange}
+                                        />
+                                        None
+                                        <p>$0.00</p>
+                                    </label>
+                                    
+                                    <label className="radio-option" style={{marginRight:"15px"}}>
+                                        <input
+                                            style={{webkitAppearance:"auto"}}
+                                            type="radio"
+                                            value="Black"
+                                            checked={selectedOption === 'Black'}
+                                            onChange={handleChange}
+                                        />
+                                        Black Matte
+                                        <p>$10.00</p>
+                                    </label>
+                                    <label className="radio-option" style={{marginRight:"15px"}}>
+                                        <input
+                                            style={{webkitAppearance:"auto"}}
+                                            type="radio"
+                                            value="Silver"
+                                            checked={selectedOption === 'Silver'}
+                                            onChange={handleChange}
+                                        />
+                                        Vintage Silver
+                                        <p>$15.00</p>
+                                    </label>
+                                    <label className="radio-option" style={{marginRight:"15px"}}>
+                                        <input
+                                            style={{webkitAppearance:"auto"}}
+                                            type="radio"
+                                            value="Walnut Flair"
+                                            checked={selectedOption === 'Walnut Flair'}
+                                            onChange={handleChange}
+                                        />
+                                        Walnut Flair
+                                        <p>$20.00</p>
+                                    </label>
                                 </div>
                             </div>
                             <div className="pull-left full-width margin-bottom-15">
-                                <label className="margin-bottom-10 pull-left full-width">Size :</label>
-                                 <div className="arrow-d">
-                                     <select className="pro-select" onChange={handleSizeChange}>
-                                     <option value="10x15" data-width="100%">10x15</option>
-                                    <option value="10x12" data-width="70%">10x12</option>
-                                    <option value="6x8" data-width="50%">6x8</option>
-                                    <option value="4x6" data-width="40%">4x6</option>
-                                        </select>
-                                 </div>
+    <label className="margin-bottom-10 pull-left full-width">Size :</label>
+    <div className="frame-options">
+        <label className="radio-option" style={{ marginRight: "20px" }}>
+            <input
+                style={{ webkitAppearance: "auto" }}
+                type="radio"
+                value="10x15"
+                checked={selectedSize === '10x15'}
+                onChange={() => handleSizeChange('10x15')}
+            />
+            10x15
+            <p>$25.00</p>
+        </label>
+        
+        <label className="radio-option" style={{ marginRight: "20px" }}>
+            <input
+                style={{ webkitAppearance: "auto" }}
+                type="radio"
+                value="10x12"
+                checked={selectedSize === '10x12'}
+                onChange={() => handleSizeChange('10x12')}
+            />
+            10x12
+            <p>$20.00</p>
+        </label>
+        <label className="radio-option" style={{ marginRight: "20px" }}>
+            <input
+                style={{ webkitAppearance: "auto" }}
+                type="radio"
+                value="6x8"
+                checked={selectedSize === '6x8'}
+                onChange={() => handleSizeChange('6x8')}
+            />
+            6x8
+            <p>$15.00</p>
+        </label>
+        <label className="radio-option" style={{ marginRight: "20px" }}>
+            <input
+                style={{ webkitAppearance: "auto" }}
+                type="radio"
+                value="4x6"
+                checked={selectedSize === '4x6'}
+                onChange={() => handleSizeChange('4x6')}
+            />
+            4x6
+            <p>$10.00</p>
+        </label>
+    </div>
+</div>
+
+                                 <div className="pull-left full-width margin-bottom-15">
                                 <label className="margin-bottom-10 pull-left full-width margin-top-10">Hanger :</label>
                                 <div className="arrow-d">
                                     <select className="pro-select">
