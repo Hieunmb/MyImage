@@ -19,6 +19,8 @@ import Search from './components/pages/search';
 import Searching from './components/pages/searching';
 import Cart from './components/pages/cart';
 import Menu from './components/pages/menu';
+import Invoice from './components/pages/invoice';
+
 
 function App() {
     const location = useLocation();
@@ -42,6 +44,7 @@ function App() {
         <Route path='/register' element={<Register/>}/>
         <Route path='/reset-password' element={<ResetPassword/>}/>
         <Route path='/search' element={<Search/>}/>
+        <Route path='/invoice' element={<Invoice/>}/>
       </Routes>
       <Footer currentLocation={location.pathname}></Footer>
       </div>
