@@ -17,19 +17,19 @@ function Contact() {
                                 <div className="col-md-4 col-xs-12 col-sm-6 margin-top-30">
                                     <div className="text-center official-detail">
                                         <i className="fa fa-map-marker fa-3x"></i>
-                                        <p>98 Agnibina Road, Jinnah Super Market, 2nd Floor, Enpek, Jhenida, Dhaka, Bangladesh</p>
+                                        <p style={{marginBottom:"30px"}}>8a Tôn Thất Thuyết, Mỹ Đình, Cầu Giấy, Hà Nội, Việt Nam</p>
                                     </div>
                                 </div>
                                 <div className="col-md-4 col-xs-12 col-sm-6 margin-top-30">
                                     <div className="text-center official-detail">
                                         <i className="fa fa-phone fa-3x"></i>
-                                        <p>1800 000 8808<br/>01248 2468 523745<br/>421 25879 145368</p>
+                                        <p>096 505 1658<br/>039 632 1425<br/>033 887 7981</p>
                                     </div>
                                 </div>
                                 <div className="col-md-4 col-xs-12 col-sm-6 margin-top-30">
                                     <div className="text-center official-detail">
                                         <i className="fa fa-envelope fa-3x"></i>
-                                        <p>support@themetidy.com<br/>admin@themetidy.com<br/>design@themetidy.com</p>
+                                        <p>abcxyz12433@gmail.com<br/>abcxyzduc075@gmail.com<br/>xxx45204@gmail.com</p>
                                     </div>
                                 </div>
                             </div>
@@ -90,7 +90,8 @@ function Contact() {
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12">
-                                <div id="googleMap" className="margin-top-5 full-width"></div>
+                                {/* <div id="googleMap" className="margin-top-5 full-width"></div> */}
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.096484299949!2d105.77972177471445!3d21.028825087777456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab4cd376479b%3A0xbc2e0bb9db373ed2!2zOGEgVMO0biBUaOG6pXQgVGh1eeG6v3QsIE3hu7kgxJDDrG5oLCBD4bqndSBHaeG6pXksIEjDoCBO4buZaSAxMDAwMDAsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1704524667197!5m2!1svi!2s" width="1150px" height="450" style={{border:"0"}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
                         </div>
                     </div>
