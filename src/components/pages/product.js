@@ -30,20 +30,32 @@ function Product(){
             setQuantity(prevQuantity => prevQuantity - 1);
         }
     };
+    const [sizeStyles, setSizeStyles] = useState([]);
+    const loadSize = async ()=>{
+        try {
+            const rs = await api.get(url.SIZE.LIST);
+            setSizeStyles(rs.data);
+        } catch (error) {
+            
+        }
+    }
+    useEffect(()=>{
+        loadSize();
+    },[]);
     const [selectedSizePrice, setSelectedSizePrice] = useState(25.00);
     const handleSizeChange = (newSize) => {
-        setSelectedSize(newSize);
-        const sizeData = {
-            '10x15': { width: '100%', price: 25.00 },
-            '10x12': { width: '70%', price: 20.00 },
-            '6x8': { width: '50%', price: 15.00 },
-            '4x6': { width: '40%', price: 10.00 },
-            // Add other sizes as needed
+        const productImage = document.getElementById('productImage');
+        const newSelectedOption = newSize.target.value;
+        const selectedSize = sizeStyles.find((item) => item.sizeName === newSelectedOption);
+        const selectedStyle = selectedSize || {
+            price: 25,
+            sizeName: '10x15',
+            sizeWidth: '100%',
         };
-        const selectedSizeData = sizeData[newSize] || { width: '100%', price: 25.00 };
+        setSelectedSizePrice(selectedStyle.sizeAmount);
+        productImage.style.width = selectedSize.sizeWidth;
 
-        setImageWidth(selectedSizeData.width);
-        setSelectedSizePrice(selectedSizeData.price);
+    setSelectedSize(newSelectedOption); // Update the selected option in state
 
     };
     const [uploadedImage, setUploadedImage] = useState(null);
@@ -67,15 +79,17 @@ function Product(){
     
         // Save data to localStorage
         const cartItem = {
+            thumbnailUpload:imageFile,
             thumbnail: uploadedImage,
             frame_id: projects.frame_id,
             material_id: projects.material_id,
             size_id: projects.size_id,
             hanger_id:projects.hanger_id,
             quantity: quantity,
+            hanger:selectedHangerOption,
             selectedOption: selectedOption,
             selectedSize: selectedSize,
-            total: (selectedSizePrice + price).toFixed(2),
+            total: (selectedSizePrice + price + selectedHangerPrice).toFixed(2),
         };
     
         // Retrieve existing cart items from localStorage or initialize an empty array
@@ -101,7 +115,6 @@ function Product(){
         }
         window.location.reload();
         window.alert('Add To Cart Success');
-        navigate('/');
     };
     
     // Function to retrieve cart items from localStorage
@@ -139,6 +152,33 @@ const handleChange = (event) => {
     productImage.style.boxShadow = `0 0 0 10px ${selectedStyle.frame_color_insite} inset`;
 
     setSelectedOption(newSelectedOption);
+};
+const [hangerStyles, setHangerStyles] = useState([]);
+const [selectedHangerPrice, setSelectedHangerPrice] = useState(0.00);
+const [selectedHangerOption, setSelectedHangerOption] = useState('None'); 
+const loadHanger = async ()=>{
+    try {
+        const rs = await api.get(url.HANGER.LIST);
+        setHangerStyles(rs.data);
+    } catch (error) {
+        
+    }
+}
+useEffect(()=>{
+    loadHanger();
+},[]);
+const handleHangerChange = (event) => {
+    const newSelectedOption = event.target.value;
+
+    const selectedHanger = hangerStyles.find((item) => item.hangerName === newSelectedOption);
+    const selectedStyle = selectedHanger || {
+        price: 0.00,
+        hangerName:""
+    };
+
+    setSelectedHangerPrice(selectedStyle.hangerAmount);
+
+    setSelectedHangerOption(newSelectedOption);
 };
     return(
         <main className="product-page">
@@ -222,22 +262,22 @@ const handleChange = (event) => {
                     <div className="col-md-7 col-sm-12 col-xs-12">
                         <div className="product-detles">
                             <div className="full-width pull-left margin-bottom-15">
-                                <h1 className="margin-left-5 pull-left margin-top-0 margin-bottom-0">${(selectedSizePrice+price).toFixed(2)}</h1>
+                                <h1 className="margin-left-5 pull-left margin-top-0 margin-bottom-0">${(selectedSizePrice+price+selectedHangerPrice).toFixed(2)}</h1>
                             </div>
                             <div className="pull-left full-width margin-bottom-15">
                             <label className="margin-bottom-10 pull-left full-width">Frame :</label>
         <div className="frame-options">
         {frameStyles.map((item, index) => (
-    <label className="radio-option" key={index} style={{ marginRight: "15px" }}>
+    <label  className="radio-option" key={index} style={{ marginRight: "15px",border: '2px solid rgba(0,0,0,.09)',borderRadius:"5px", width:"125px" }}>
         <input
-            style={{ webkitAppearance: "auto" }}
+        style={{ webkitAppearance: "auto"}}
             type="radio"
             value={item.frame_name}
             checked={selectedOption === item.frame_name}
             onChange={handleChange}
         />
-        {item.frame_name}
-        <p>${item.frame_amount}.00</p>
+        <p style={{textAlign:'center'}}>{item.frame_name}</p>
+        <p style={{textAlign:'center'}}>${item.frame_amount}.00</p>
     </label>
 ))}
                                 </div>
@@ -245,62 +285,38 @@ const handleChange = (event) => {
                             <div className="pull-left full-width margin-bottom-15">
     <label className="margin-bottom-10 pull-left full-width">Size :</label>
     <div className="frame-options">
-        <label className="radio-option" style={{ marginRight: "20px" }}>
+    {sizeStyles.map((item, index) => (
+        <label className="radio-option" key={index} style={{ marginRight: "20px",border: '2px solid rgba(0,0,0,.09)',borderRadius:"5px", width:"125px" }}>
             <input
                 style={{ webkitAppearance: "auto" }}
                 type="radio"
-                value="10x15"
-                checked={selectedSize === '10x15'}
-                onChange={() => handleSizeChange('10x15')}
+                value={item.sizeName}
+                checked={selectedSize === item.sizeName}
+                onChange={handleSizeChange}
             />
-            10x15
-            <p>$25.00</p>
+        <p style={{textAlign:'center'}}>{item.sizeName}</p>
+        <p style={{textAlign:'center'}}>${item.sizeAmount}.00</p>
         </label>
-        
-        <label className="radio-option" style={{ marginRight: "20px" }}>
-            <input
-                style={{ webkitAppearance: "auto" }}
-                type="radio"
-                value="10x12"
-                checked={selectedSize === '10x12'}
-                onChange={() => handleSizeChange('10x12')}
-            />
-            10x12
-            <p>$20.00</p>
-        </label>
-        <label className="radio-option" style={{ marginRight: "20px" }}>
-            <input
-                style={{ webkitAppearance: "auto" }}
-                type="radio"
-                value="6x8"
-                checked={selectedSize === '6x8'}
-                onChange={() => handleSizeChange('6x8')}
-            />
-            6x8
-            <p>$15.00</p>
-        </label>
-        <label className="radio-option" style={{ marginRight: "20px" }}>
-            <input
-                style={{ webkitAppearance: "auto" }}
-                type="radio"
-                value="4x6"
-                checked={selectedSize === '4x6'}
-                onChange={() => handleSizeChange('4x6')}
-            />
-            4x6
-            <p>$10.00</p>
-        </label>
+))}
     </div>
-</div>
-
+    </div>
                                  <div className="pull-left full-width margin-bottom-15">
                                 <label className="margin-bottom-10 pull-left full-width margin-top-10">Hanger :</label>
-                                <div className="arrow-d">
-                                    <select className="pro-select">
-                                    <option value="10x15" data-width="100%">None</option>
-                                    <option value="10x15" data-width="100%">Hanger set</option>
-                                    </select>
-                                </div>
+                                <div className="frame-options">
+    {hangerStyles.map((item, index) => (
+        <label className="radio-option" key={index} style={{ marginRight: "20px",border: '2px solid rgba(0,0,0,.09)',borderRadius:"5px", width:"125px" }}>
+            <input
+                style={{ webkitAppearance: "auto" }}
+                type="radio"
+                value={item.hangerName}
+                checked={selectedHangerOption === item.hangerName}
+                onChange={handleHangerChange}
+            />
+        <p style={{textAlign:'center'}}>{item.hangerName}</p>
+        <p style={{textAlign:'center'}}>${item.hangerAmount}.00</p>
+        </label>
+))}
+    </div>
                             </div>
                             <div className="pull-left full-width margin-bottom-20">
                                 <label className="margin-bottom-10">Quantity :</label>

@@ -1,4 +1,4 @@
-import {useLocation, Route, Routes } from 'react-router-dom';
+import {useLocation, Route, Routes, Navigate } from 'react-router-dom';
 import BreadCrumb from './components/layouts/breadcrumb';
 import Error from './components/pages/404';
 import About from './components/pages/about';
@@ -20,11 +20,35 @@ import Searching from './components/pages/searching';
 import Cart from './components/pages/cart';
 import Menu from './components/pages/menu';
 import Invoice from './components/pages/invoice';
+import { useJwt } from 'react-jwt';
 
 
 function App() {
     const location = useLocation();
+    const ProtectedRoute = ({ element }) => {
+      const token = localStorage.getItem("accessToken");
+      const { isExpired, isInvalid } = useJwt(token);
+  
+      if (!token || isExpired || isInvalid) {
+          localStorage.removeItem("accessToken");
+          return <Navigate to="/login" />;
+      }
+  
+      return element;
+  };
+  
+  const ProtectedLoginRoute = ({ element }) => {
+      const token = localStorage.getItem("accessToken");
+      const { isExpired, isInvalid } = useJwt(token);
+  
+      if (token && !isExpired && !isInvalid) {
+          return <Navigate to="/" />;
+      }
+  
+      return element;
+  };
   return (
+    
     <div className="App">
       <div className="paira-container pages-container">
       <Header></Header>
@@ -39,9 +63,9 @@ function App() {
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/' element={<Index/>}/>
         <Route path='/list-collection' element={<ListCollection/>}/>
-        <Route path='/login' element={<Login/>}/>
+        <Route path='/login' element={<ProtectedLoginRoute element={<Login />} />} />
         <Route path='/product' element={<Product/>}/>
-        <Route path='/register' element={<Register/>}/>
+        <Route path='/register' element={<ProtectedLoginRoute element= {<Register/>}/>}/>
         <Route path='/reset-password' element={<ResetPassword/>}/>
         <Route path='/search' element={<Search/>}/>
         <Route path='/invoice' element={<Invoice/>}/>

@@ -19,7 +19,6 @@ function Cart(){
         }
 
         updatedCartItems[index] = itemToUpdate;
-
         localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
         setCartItems(updatedCartItems);
     };
@@ -63,7 +62,7 @@ function Cart(){
                                     <a href="#" className="pull-left"><img className="" src={item.thumbnail} alt=""/></a>
                                 </div>
                                 <div className="row-2">
-                                    <a href="product.html" className="cart-menu-line-title">Frame: {item.selectedOption}</a>
+                                    <a  className="cart-menu-line-title">Frame: {item.selectedOption}</a>
                                     <div className="quentity margin-bottom-15 pull-left">
                                         <div className="product_quantity_group product-quantity-fix">
                                             <input type="text" className="form-control text-center pull-left font-size-16 margin-left-15" onChange={() => updateQuantity(index, '')} value={item.quantity}/>

@@ -15,7 +15,9 @@ function Header() {
 
             // Get the info student from token
             const customerName = decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
-            
+
+            const customerId = decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/id"];
+            console.log(customerId)
             setCustomerName(customerName);
         } catch (error) {
 
