@@ -10,6 +10,27 @@ const url ={
         POST:"/Image",
         PUT:"/Image",
         DELETE:"/Image",
+    },
+    FRAME:{
+        LIST:"/Frame",
+        CREATE:"/Frame",
+        EDIT:"/Frame",
+        DELETE:"/Frame",
+        GET:"/Frame/get-by-id"
+    },
+    SIZE:{
+        LIST:"/Size",
+        CREATE:"/Size",
+        EDIT:"/Size",
+        DELETE:"/Size",
+        GET:"/Size/get-by-id"
+    },
+    HANGER:{
+        LIST:"/Hanger",
+        CREATE:"/Hanger",
+        EDIT:"/Hanger",
+        DELETE:"/Hanger",
+        GET:"/Hanger/get-by-id"
     }
 }
 export default url;

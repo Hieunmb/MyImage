@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../../services/api";
 import url from "../../services/url";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +15,7 @@ function Product(){
         frame_id:1,
         material_id: 1,
         size_id: 1,
+        hanger_id:1,
         quantity:1,
       });
 
@@ -58,57 +59,87 @@ function Product(){
         }));
     };
     const formHandle = (event) => {
-        event.preventDefault(); // Prevent the default form submission behavior
-
-        // Your existing code for adding to cart with image upload
-        if (uploadedImage) {
-            const formData = new FormData();
-            formData.append("thumbnail", imageFile);
-            formData.append("frame_id", projects.frame_id);
-            formData.append("material_id", projects.material_id);
-            formData.append("size_id", projects.size_id);
-            formData.append("quantity", quantity);
-
-            api.post(url.IMAGE.POST, formData)
-                .then((response) => {
-                    // Handle successful image upload
-                    window.alert('Add To Cart Success');
-                    navigate('/');
-                })
-                .catch((error) => {
-                    // Handle error
-                    console.error("Error uploading image:", error);
-                });
-        } else {
-            // Handle case where no image is uploaded
-            console.log("No image uploaded");
+        event.preventDefault();
+    
+        // Validate if all necessary fields are present
+    
+        // Existing code for API call and handling
+    
+        // Save data to localStorage
+        const cartItem = {
+            thumbnail: uploadedImage,
+            frame_id: projects.frame_id,
+            material_id: projects.material_id,
+            size_id: projects.size_id,
+            hanger_id:projects.hanger_id,
+            quantity: quantity,
+            selectedOption: selectedOption,
+            selectedSize: selectedSize,
+            total: (selectedSizePrice + price).toFixed(2),
+        };
+    
+        // Retrieve existing cart items from localStorage or initialize an empty array
+        const existingCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        const existingCartCount = JSON.parse(localStorage.getItem('cartCount')) || 0;
+    
+        // Add the new item to the existing cart items
+        existingCartItems.push(cartItem);
+    
+        // Save the updated cart items back to localStorage
+        localStorage.setItem('cartItems', JSON.stringify(existingCartItems));
+    
+        // Increment the cart count
+        const updatedCartCount = existingCartCount + 1;
+        
+        // Save the updated count back to localStorage
+        localStorage.setItem('cartCount', updatedCartCount);
+    
+        // Update the cart count displayed in the header
+        const cartMenuBody = document.querySelector('.cart-menu-body span.span');
+        if (cartMenuBody) {
+            cartMenuBody.textContent = updatedCartCount.toString();
         }
+        window.location.reload();
+        window.alert('Add To Cart Success');
+        navigate('/');
+    };
+    
+    // Function to retrieve cart items from localStorage
+    const getCartItems = () => {
+        return JSON.parse(localStorage.getItem('cartItems')) || [];
+    };
+    const [frameStyles, setFrameStyles] = useState([]);
+const [selectedOption, setSelectedOption] = useState('None');
+
+const loadProducts = async ()=>{
+    try {
+        const rs = await api.get(url.FRAME.LIST);
+        setFrameStyles(rs.data);
+    } catch (error) {
+        
+    }
+}
+useEffect(()=>{
+    loadProducts();
+},[]);
+
+const handleChange = (event) => {
+    const newSelectedOption = event.target.value;
+    const productImage = document.getElementById('productImage');
+
+    const selectedFrame = frameStyles.find((item) => item.frame_name === newSelectedOption);
+    const selectedStyle = selectedFrame || {
+        price: 0.00,
+        borderColor: 'white',
+        boxShadow: '0 0 0 10px white inset',
     };
 
-    const [selectedOption, setSelectedOption] = useState('None');
-    const handleChange = (event) => {
-        const newSelectedOption = event.target.value;
-        const productImage = document.getElementById('productImage');
-    
-        const optionStyles = {
-            None: { price: 0.00, borderColor: 'white', boxShadow: '0 0 0 10px white inset' },
-            Black: { price: 10.00, borderColor: '#000', boxShadow: '0 0 0 10px #333333 inset' },
-            Silver: { price: 15.00, borderColor: '#b3b3b3', boxShadow: '0 0 0 10px #333333 inset' },
-            'Walnut Flair': { price: 20.00, borderColor: '#A0522D', boxShadow: '0 0 0 10px #8B4513 inset' },
-        };
-    
-        const selectedStyle = optionStyles[newSelectedOption] || {
-            price: 80.00,
-            borderColor: 'white',
-            boxShadow: '0 0 0 10px white inset',
-        };
-    
-        setPrice(selectedStyle.price);
-        productImage.style.borderColor = selectedStyle.borderColor;
-        productImage.style.boxShadow = selectedStyle.boxShadow;
-    
-        setSelectedOption(newSelectedOption); // Update the selected option in state
-    };
+    setPrice(selectedStyle.frame_amount);
+    productImage.style.borderColor = selectedStyle.frame_color_outsite;
+    productImage.style.boxShadow = `0 0 0 10px ${selectedStyle.frame_color_insite} inset`;
+
+    setSelectedOption(newSelectedOption);
+};
     return(
         <main className="product-page">
             <form method='POST' onSubmit={formHandle}>
@@ -190,59 +221,25 @@ function Product(){
                     </div>
                     <div className="col-md-7 col-sm-12 col-xs-12">
                         <div className="product-detles">
-                            <h1 className="full-width text-capitalize margin-bottom-15 margin-clear">Sleep women with water color</h1>
                             <div className="full-width pull-left margin-bottom-15">
-                                <h3 className="margin-left-5 pull-left margin-top-0 margin-bottom-0">${(selectedSizePrice+price).toFixed(2)}</h3>
+                                <h1 className="margin-left-5 pull-left margin-top-0 margin-bottom-0">${(selectedSizePrice+price).toFixed(2)}</h1>
                             </div>
                             <div className="pull-left full-width margin-bottom-15">
-                                <label className="margin-bottom-10 pull-left full-width">Frame :</label>
-                                <div className="frame-options">
-                                    <label className="radio-option" style={{marginRight:"15px"}}>
-                                        <input
-                                            style={{webkitAppearance:"auto"}}
-                                            type="radio"
-                                            value="None"
-                                            name="None"
-                                            checked={selectedOption === 'None'}
-                                            onChange={handleChange}
-                                        />
-                                        None
-                                        <p>$0.00</p>
-                                    </label>
-                                    
-                                    <label className="radio-option" style={{marginRight:"15px"}}>
-                                        <input
-                                            style={{webkitAppearance:"auto"}}
-                                            type="radio"
-                                            value="Black"
-                                            checked={selectedOption === 'Black'}
-                                            onChange={handleChange}
-                                        />
-                                        Black Matte
-                                        <p>$10.00</p>
-                                    </label>
-                                    <label className="radio-option" style={{marginRight:"15px"}}>
-                                        <input
-                                            style={{webkitAppearance:"auto"}}
-                                            type="radio"
-                                            value="Silver"
-                                            checked={selectedOption === 'Silver'}
-                                            onChange={handleChange}
-                                        />
-                                        Vintage Silver
-                                        <p>$15.00</p>
-                                    </label>
-                                    <label className="radio-option" style={{marginRight:"15px"}}>
-                                        <input
-                                            style={{webkitAppearance:"auto"}}
-                                            type="radio"
-                                            value="Walnut Flair"
-                                            checked={selectedOption === 'Walnut Flair'}
-                                            onChange={handleChange}
-                                        />
-                                        Walnut Flair
-                                        <p>$20.00</p>
-                                    </label>
+                            <label className="margin-bottom-10 pull-left full-width">Frame :</label>
+        <div className="frame-options">
+        {frameStyles.map((item, index) => (
+    <label className="radio-option" key={index} style={{ marginRight: "15px" }}>
+        <input
+            style={{ webkitAppearance: "auto" }}
+            type="radio"
+            value={item.frame_name}
+            checked={selectedOption === item.frame_name}
+            onChange={handleChange}
+        />
+        {item.frame_name}
+        <p>${item.frame_amount}.00</p>
+    </label>
+))}
                                 </div>
                             </div>
                             <div className="pull-left full-width margin-bottom-15">

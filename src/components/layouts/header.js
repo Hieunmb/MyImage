@@ -10,7 +10,6 @@ function Header() {
 
     useEffect(() => {
         const token = localStorage.getItem("accessToken");
-
         try {
             const decodedToken = JSON.parse(atob(token.split(".")[1]));
 
@@ -50,7 +49,7 @@ function Header() {
                                     <a href="#" className="search-popup"><img src="assets/images/search.png" alt="" className=""/></a>
                                 </li>
                                 <li className="dropdown cart-menu-body">
-                                    <a href="#"><img src="assets/images/shopping-bag.png" alt="" className="position-r"/><span className="span">2</span></a>
+                                    <a href="#"><img src="assets/images/shopping-bag.png" alt="" className="position-r"/><span className="span">{JSON.parse(localStorage.getItem('cartCount')) || 0}</span></a>
                                 </li>
                                 <li><a href="#" data-toggle="dropdown" className="login-popup">
                                 <img style={{width:"35px"}} src="assets/images/blog/article-user.png" alt="" className=""/>
