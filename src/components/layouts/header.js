@@ -80,7 +80,7 @@ function Header() {
                                 <div className="carousel-caption carousel-caption1">
                                     <h1 className="text-capitalize margin-bottom-20 paira-animation" data-paira-animation="fadeInLeft" data-paira-animation-delay="0.2s">Start</h1>
                                     <h1 className="text-capitalize margin-bottom-20 margin-top-0 paira-animation" data-paira-animation="fadeInLeft" data-paira-animation-delay="0.5s">your collection</h1>
-                                    <a href="product.html" className="btn btn-primary btn-lg paira-animation" data-paira-animation="fadeInUp" data-paira-animation-delay="0.8s">Show Now</a>
+                                    <a href="/product" className="btn btn-primary btn-lg paira-animation" data-paira-animation="fadeInUp" data-paira-animation-delay="0.8s">Try Now</a>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +90,7 @@ function Header() {
                                 <div className="carousel-caption carousel-caption3">
                                     <h1 className="text-capitalize margin-bottom-20 paira-animation" data-paira-animation="fadeInRight" data-paira-animation-delay="0.2s">Posters</h1>
                                     <h1 className="text-capitalize margin-bottom-20 margin-top-0 paira-animation" data-paira-animation="fadeInRight" data-paira-animation-delay="0.5s">& Prints</h1>
-                                    <a href="product.html" className="btn btn-primary btn-lg paira-animation" data-paira-animation="fadeInUp" data-paira-animation-delay="0.8s">Show Now</a>
+                                    <a href="/product" className="btn btn-primary btn-lg paira-animation" data-paira-animation="fadeInUp" data-paira-animation-delay="0.8s">Try Now</a>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +104,7 @@ function Header() {
                                     <h1 className="text-capitalize margin-bottom-20 margin-top-0 paira-animation"
                                         data-paira-animation="fadeInRight" data-paira-animation-delay="0.5s">Perfect Present
                                     </h1>
-                                    <a href="product.html" className="btn btn-primary btn-lg paira-animation" data-paira-animation="fadeInUp" data-paira-animation-delay="0.8s">Show Now</a>
+                                    <a href="/product" className="btn btn-primary btn-lg paira-animation" data-paira-animation="fadeInUp" data-paira-animation-delay="0.8s">Try Now</a>
                                 </div>
                             </div>
                         </div>
