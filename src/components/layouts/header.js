@@ -28,6 +28,7 @@ function Header() {
         localStorage.removeItem("accessToken");
         setCustomerName("");
     };
+    const accessTokenExists = !!localStorage.getItem("accessToken");
      // Get the current location
   const location = useLocation();
   
@@ -58,12 +59,20 @@ function Header() {
                                 <span style={{ marginLeft: '5px' }}>{decodeURIComponent(escape(customerName))}</span>
                                 </a>
                                 <ul className="dropdown-menu" style={{marginLeft:'250px',backgroundColor:"#c2a476"}}>
-                                    <li>
-                                    <Link to="/profile">Profile</Link>
-                                    </li>
-                                    <li>
-                                    <Link to="/login" onClick={handleLogout}><i className="fa fa-arrow-right"></i>Log Out</Link>
-                                    </li>
+                                {accessTokenExists ? (
+                    <>
+                        <li>
+                            <Link to="/profile">Profile</Link>
+                        </li>
+                        <li>
+                            <Link to="/login" onClick={handleLogout}><i className="fa fa-arrow-right"></i>Log Out</Link>
+                        </li>
+                    </>
+                ) : (
+                    <li>
+                        <Link to="/login"><i className="fa fa-arrow-right"></i>Log In</Link>
+                    </li>
+                )}
                                 </ul>
                                 </li>
                             </ul>

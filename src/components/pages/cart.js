@@ -73,24 +73,10 @@ function Cart(){
                                         </div>
                                     </div>
                                     <div className="btn-group full-width dropdown-category margin-bottom-15">
-                                        <button type="button" className="btn btn-success dropdown-toggle text-uppercase" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{item.selectedSize}<i className="fa fa-angle-down dropdown-icon"></i></button>
-                                        <ul className="dropdown-menu text-uppercase">
-                                            <li><a href="#"></a></li>
-                                            <li><a href="#">Showcase</a></li>
-                                            <li><a href="#">Dining Room</a></li>
-                                            <li><a href="#">Living Room</a></li>
-                                            <li><a href="#">Drowing Room</a></li>
-                                        </ul>
+                                        <button type="button" className="btn btn-success dropdown-toggle text-uppercase" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{item.selectedSize}</button>
                                     </div>
                                     <div className="btn-group full-width dropdown-category margin-bottom-15">
-                                        <button type="button" className="btn btn-success dropdown-toggle text-uppercase" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{item.hanger}<i className="fa fa-angle-down dropdown-icon"></i></button>
-                                        <ul className="dropdown-menu text-uppercase">
-                                            <li><a href="#"></a></li>
-                                            <li><a href="#">Showcase</a></li>
-                                            <li><a href="#">Dining Room</a></li>
-                                            <li><a href="#">Living Room</a></li>
-                                            <li><a href="#">Drowing Room</a></li>
-                                        </ul>
+                                        <button type="button" className="btn btn-success dropdown-toggle text-uppercase" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{item.hanger}</button>
                                     </div>
                                     <h2 className="margin-clear cart-product-price">{item.total}</h2>
                                 </div>
@@ -107,31 +93,6 @@ function Cart(){
                         <div className="margin-bottom-30">
                             <h3 className="margin-clear margin-bottom-15">Sub Total</h3>
                             <div className="cart-sub-total">
-                            <label className="radio-option" style={{marginRight:"15px"}}>
-                                        <input
-                                            style={{ webkitAppearance: 'auto' }}
-                                            type="radio"
-                                            value="PAYPAL"
-                                            checked={selectedOption === 'PAYPAL'}
-                                            onChange={handlePaymentChange}
-                                            name='paymentOption'
-                                        />
-                                        <span><i class='fab fa-paypal fa-9x' style={{fontSize:"20px",width:'20px',marginLeft:'5px'}}></i></span>
-                                        <span>PayPal</span>
-                                    </label>
-                                    <br></br>
-                                    <label className="radio-option" style={{marginRight:"15px"}}>
-                                        <input
-                                            style={{ webkitAppearance: 'auto' }}
-                                            type="radio"
-                                            value="COD"
-                                            checked={selectedOption === 'COD'}
-                                            onChange={handlePaymentChange}
-                                            name='paymentOption'
-                                        />
-                                        <span><i class='fas fa-cart-arrow-down' style={{fontSize:"18px",width:'23px',marginLeft:'5px'}}></i></span>
-                                        <span>COD</span>
-                                    </label>
                                 <h1 className="margin-bottom-15 text-center"><span className="money">${totalAmount.toFixed(2)}</span></h1>
                                 <input type="submit" id="checkout" className="btn btn-success btn-lg btn-block" name="checkout" value="Proceed To Checkout"/>
                             </div>
