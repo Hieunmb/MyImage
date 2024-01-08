@@ -10,13 +10,14 @@ function Header() {
 
     useEffect(() => {
         const token = localStorage.getItem("accessToken");
-
         try {
             const decodedToken = JSON.parse(atob(token.split(".")[1]));
 
             // Get the info student from token
             const customerName = decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
-            
+
+            const customerId = decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/id"];
+            console.log(customerId)
             setCustomerName(customerName);
         } catch (error) {
 
@@ -50,7 +51,7 @@ function Header() {
                                     <a href="#" className="search-popup"><img src="assets/images/search.png" alt="" className=""/></a>
                                 </li>
                                 <li className="dropdown cart-menu-body">
-                                    <a href="#"><img src="assets/images/shopping-bag.png" alt="" className="position-r"/><span className="span">2</span></a>
+                                    <a href="#"><img src="assets/images/shopping-bag.png" alt="" className="position-r"/><span className="span">{JSON.parse(localStorage.getItem('cartCount')) || 0}</span></a>
                                 </li>
                                 <li><a href="#" data-toggle="dropdown" className="login-popup">
                                 <img style={{width:"35px"}} src="assets/images/blog/article-user.png" alt="" className=""/>
@@ -81,7 +82,7 @@ function Header() {
                                 <div className="carousel-caption carousel-caption1">
                                     <h1 className="text-capitalize margin-bottom-20 paira-animation" data-paira-animation="fadeInLeft" data-paira-animation-delay="0.2s">Start</h1>
                                     <h1 className="text-capitalize margin-bottom-20 margin-top-0 paira-animation" data-paira-animation="fadeInLeft" data-paira-animation-delay="0.5s">your collection</h1>
-                                    <a href="product.html" className="btn btn-primary btn-lg paira-animation" data-paira-animation="fadeInUp" data-paira-animation-delay="0.8s">Show Now</a>
+                                    <a href="/product" className="btn btn-primary btn-lg paira-animation" data-paira-animation="fadeInUp" data-paira-animation-delay="0.8s">Try Now</a>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +92,7 @@ function Header() {
                                 <div className="carousel-caption carousel-caption3">
                                     <h1 className="text-capitalize margin-bottom-20 paira-animation" data-paira-animation="fadeInRight" data-paira-animation-delay="0.2s">Posters</h1>
                                     <h1 className="text-capitalize margin-bottom-20 margin-top-0 paira-animation" data-paira-animation="fadeInRight" data-paira-animation-delay="0.5s">& Prints</h1>
-                                    <a href="product.html" className="btn btn-primary btn-lg paira-animation" data-paira-animation="fadeInUp" data-paira-animation-delay="0.8s">Show Now</a>
+                                    <a href="/product" className="btn btn-primary btn-lg paira-animation" data-paira-animation="fadeInUp" data-paira-animation-delay="0.8s">Try Now</a>
                                 </div>
                             </div>
                         </div>
@@ -105,7 +106,7 @@ function Header() {
                                     <h1 className="text-capitalize margin-bottom-20 margin-top-0 paira-animation"
                                         data-paira-animation="fadeInRight" data-paira-animation-delay="0.5s">Perfect Present
                                     </h1>
-                                    <a href="product.html" className="btn btn-primary btn-lg paira-animation" data-paira-animation="fadeInUp" data-paira-animation-delay="0.8s">Show Now</a>
+                                    <a href="/product" className="btn btn-primary btn-lg paira-animation" data-paira-animation="fadeInUp" data-paira-animation-delay="0.8s">Try Now</a>
                                 </div>
                             </div>
                         </div>
