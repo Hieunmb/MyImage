@@ -21,6 +21,7 @@ import Cart from './components/pages/cart';
 import Menu from './components/pages/menu';
 import Invoice from './components/pages/invoice';
 import { useJwt } from 'react-jwt';
+import Profile from'./components/pages/profile';
 
 
 function App() {
@@ -69,6 +70,7 @@ function App() {
         <Route path='/reset-password' element={<ResetPassword/>}/>
         <Route path='/search' element={<Search/>}/>
         <Route path='/invoice' element={<Invoice/>}/>
+        <Route path='/profile' element={<Profile/>}/>
       </Routes>
       <Footer currentLocation={location.pathname}></Footer>
       </div>
