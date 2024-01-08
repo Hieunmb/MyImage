@@ -268,7 +268,7 @@ const handleHangerChange = (event) => {
                             <label className="margin-bottom-10 pull-left full-width">Frame :</label>
         <div className="frame-options">
         {frameStyles.map((item, index) => (
-    <label  className="radio-option" key={index} style={{ marginRight: "15px",border: '2px solid rgba(0,0,0,.09)',borderRadius:"5px", width:"125px" }}>
+    <label  className="radio-option" key={index} style={{ marginRight: "15px",border: '3px solid #d0aaaa',borderRadius:"5px", width:"125px" }}>
         <input
         style={{ webkitAppearance: "auto"}}
             type="radio"
@@ -286,7 +286,7 @@ const handleHangerChange = (event) => {
     <label className="margin-bottom-10 pull-left full-width">Size :</label>
     <div className="frame-options">
     {sizeStyles.map((item, index) => (
-        <label className="radio-option" key={index} style={{ marginRight: "20px",border: '2px solid rgba(0,0,0,.09)',borderRadius:"5px", width:"125px" }}>
+        <label className="radio-option" key={index} style={{ marginRight: "20px",border: '3px solid #d0aaaa',borderRadius:"5px", width:"125px" }}>
             <input
                 style={{ webkitAppearance: "auto" }}
                 type="radio"
@@ -304,7 +304,7 @@ const handleHangerChange = (event) => {
                                 <label className="margin-bottom-10 pull-left full-width margin-top-10">Hanger :</label>
                                 <div className="frame-options">
     {hangerStyles.map((item, index) => (
-        <label className="radio-option" key={index} style={{ marginRight: "20px",border: '2px solid rgba(0,0,0,.09)',borderRadius:"5px", width:"125px" }}>
+        <label className="radio-option" key={index} style={{ marginRight: "20px",border: '3px solid #d0aaaa',borderRadius:"5px", width:"125px" }}>
             <input
                 style={{ webkitAppearance: "auto" }}
                 type="radio"

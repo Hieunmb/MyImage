@@ -43,7 +43,7 @@ function Cart(){
         const storedCartCount = JSON.parse(localStorage.getItem('cartCount')) || 0;
         setCartCount(storedCartCount);
 
-        const initialTotal = storedCartItems.reduce((total, item) => total + parseFloat(item.total), 0);
+        const initialTotal = storedCartItems.reduce((total, item) => total + parseFloat(item.total) * item.quantity, 0);
         setTotalAmount(initialTotal);
     }, []);
     return(
