@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
 function Cart(){
-    const [selectedOption, setSelectedOption] = useState('PAYPAL');
-
-    const handlePaymentChange = (event) => {
-        setSelectedOption(event.target.value);
-    };
     const [cartItems, setCartItems] = useState([]);
     const [cartCount, setCartCount] = useState(0);
     const [totalAmount, setTotalAmount] = useState(0);
+    
     const updateQuantity = (index, action) => {
         const updatedCartItems = [...cartItems];
         const itemToUpdate = { ...updatedCartItems[index] };
@@ -17,9 +13,11 @@ function Cart(){
         } else if (action === 'decrease' && itemToUpdate.quantity > 1) {
             itemToUpdate.quantity -= 1;
         }
-
+        itemToUpdate.total = itemToUpdate.quantity * itemToUpdate.price;
         updatedCartItems[index] = itemToUpdate;
+        
         localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+        recalculateTotal(updatedCartItems);
         setCartItems(updatedCartItems);
     };
 
@@ -32,9 +30,23 @@ function Cart(){
         localStorage.setItem('cartCount', updatedCartCount);
         setCartCount(updatedCartCount);
 
+        recalculateTotal(updatedCartItems);
+    };
+    const recalculateTotal = (updatedCartItems) => {
+        // Calculate the new total based on the updated cart items
         const newTotal = updatedCartItems.reduce((total, item) => total + parseFloat(item.total), 0);
+    
+        // Update the total in each item
+        const itemsWithUpdatedTotal = updatedCartItems.map((item) => ({
+            ...item,
+            total: item.quantity * item.price, // Assuming you have quantity and price
+        }));
+    
+        // Store the updated cart items with recalculated totals in localStorage
+        localStorage.setItem('cartItems', JSON.stringify(itemsWithUpdatedTotal));
+    
+        // Update the total amount state if needed
         setTotalAmount(newTotal);
-        window.location.reload();
     };
     useEffect(() => {
         const storedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
@@ -43,8 +55,9 @@ function Cart(){
         const storedCartCount = JSON.parse(localStorage.getItem('cartCount')) || 0;
         setCartCount(storedCartCount);
 
-        const initialTotal = storedCartItems.reduce((total, item) => total + parseFloat(item.total) * item.quantity, 0);
+        const initialTotal = storedCartItems.reduce((total, item) => total + parseFloat(item.total), 0);
         setTotalAmount(initialTotal);
+        localStorage.setItem('totalAmount', initialTotal);
     }, []);
     return(
         <div className="modal fade paira-cart-popup" id="paira-ajax-cart" tabindex="-1" role="dialog" aria-hidden="true">
@@ -78,7 +91,7 @@ function Cart(){
                                     <div className="btn-group full-width dropdown-category margin-bottom-15">
                                         <button type="button" className="btn btn-success dropdown-toggle text-uppercase" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{item.hanger}</button>
                                     </div>
-                                    <h2 className="margin-clear cart-product-price">{item.total}</h2>
+                                    <h2 className="margin-clear cart-product-price">${item.total}.00</h2>
                                 </div>
                                 <div className="row-3"><p><a onClick={() => removeFromCart(index)} className="remove margin-top-20"><i className="fa fa-trash fa-2x"></i></a></p></div>
                             </div>
@@ -94,7 +107,7 @@ function Cart(){
                             <h3 className="margin-clear margin-bottom-15">Sub Total</h3>
                             <div className="cart-sub-total">
                                 <h1 className="margin-bottom-15 text-center"><span className="money">${totalAmount.toFixed(2)}</span></h1>
-                                <input type="submit" id="checkout" className="btn btn-success btn-lg btn-block" name="checkout" value="Proceed To Checkout"/>
+                                <a href='/checkout' style={{color:"white"}}><button type="submit" id="checkout" className="btn btn-success btn-lg btn-block" name="checkout" value="Proceed To Checkout">Proceed To Checkout</button></a>
                             </div>
                         </div>
                     </div>

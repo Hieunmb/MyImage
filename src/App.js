@@ -22,6 +22,7 @@ import Menu from './components/pages/menu';
 import Invoice from './components/pages/invoice';
 import { useJwt } from 'react-jwt';
 import Profile from'./components/pages/profile';
+import CheckOut from './components/pages/checkout/checkout';
 
 
 function App() {
@@ -69,6 +70,7 @@ function App() {
         <Route path='/register' element={<ProtectedLoginRoute element= {<Register/>}/>}/>
         <Route path='/reset-password' element={<ResetPassword/>}/>
         <Route path='/search' element={<Search/>}/>
+        <Route path='/checkout' element={<ProtectedRoute element= {<CheckOut/>}/>}/>
         <Route path='/invoice' element={<Invoice/>}/>
         <Route path='/profile' element={<Profile/>}/>
       </Routes>
