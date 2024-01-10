@@ -49,19 +49,19 @@ const handleInputChange = (e) => {
     try {
         // Call your API to save the user information
         const response = await api.post(url.ORDER.CREATE, payload);
+        const order_id = response.data.id;
         console.log('Create Order Success')
         // Handle success or perform further actions
      
       if (cartItems.length > 0) {
-        const imageFormData = new FormData();
-        const selectedItem = cartItems[0]; // Accessing the first item in the cartItems array as an example
-
+        for (const selectedItem of cartItems) {
+          const imageFormData = new FormData();
         // Populate image form data for image upload
         imageFormData.append("thumbnail", selectedItem.thumbnailUpload);
         imageFormData.append("frame_id", selectedItem.frame_id);
         imageFormData.append("hanger_id", selectedItem.hanger_id);
         imageFormData.append("size_id", selectedItem.size_id);
-        imageFormData.append("order_id", 1);
+        imageFormData.append("order_id", order_id);
         imageFormData.append("quantity", selectedItem.quantity);
         imageFormData.append("amount", selectedItem.total);
 
@@ -72,6 +72,7 @@ const handleInputChange = (e) => {
             },
         });
         navigate('/')
+      }
         // Handle success of image upload if needed
     } else {
         console.log("No image uploaded or empty cart");
