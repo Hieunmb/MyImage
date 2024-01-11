@@ -162,3 +162,13 @@ border-radius: 50%;
 .mb-3{
     margin-bottom: 10px;
 }
+.paypal-modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  z-index: 1000;
+}

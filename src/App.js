@@ -23,7 +23,7 @@ import Invoice from './components/pages/invoice';
 import { useJwt } from 'react-jwt';
 import Profile from'./components/pages/profile';
 import CheckOut from './components/pages/checkout/checkout';
-
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 function App() {
     const location = useLocation();
@@ -32,6 +32,7 @@ function App() {
       const { isExpired, isInvalid } = useJwt(token);
   
       if (!token || isExpired || isInvalid) {
+        window.alert('You have to login first')
           localStorage.removeItem("accessToken");
           return <Navigate to="/login" />;
       }

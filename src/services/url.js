@@ -40,6 +40,7 @@ const url ={
         CREATE:"/Order",
         GET:"/Order/get-by-id",
         CANCEL:"/Order/CancelOrder",
+        UPDATE:"/Order/UpdateOrder"
     }
 }
 export default url;

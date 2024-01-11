@@ -80,13 +80,6 @@ function Product(){
     const formHandle =  async (event) => {
         event.preventDefault();
         const token = localStorage.getItem('accessToken');
-    if (!token) {
-        // Redirect to the login page or show an error message
-        // Example of redirecting to the login page
-        window.alert('You have to login before add to cart');
-        window.location.href = '/login'; // Replace '/login' with your login page URL
-        return;
-    }
     
         let uploadedImageUrl = "";
         if (imageFile) {

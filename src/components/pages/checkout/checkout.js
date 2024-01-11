@@ -3,7 +3,91 @@ import "../checkout/checkout.css"
 import { useNavigate } from "react-router-dom";
 import api from "../../../services/api";
 import url from "../../../services/url";
+import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
+
 function CheckOut(){
+  //paypal
+  const total = JSON.parse(localStorage.getItem('totalAmount')) || 0;
+  const initialOptions = {
+    clientId: "AZLycR5kBTHfbjToTRDPRFY2Uj6qZnleOLwvgeknBCYKMg3L2a22U4LbU6gv_sDuG69fhwuW4VOr33Cd",
+    currency: "USD",
+  };
+  const createOrder = (data, actions) => {
+    return actions.order.create({
+      purchase_units: [
+        {
+          amount: {
+            value: total.toString(),
+          },
+        },
+      ],
+    });
+  };
+const onApprove =  async (data)=> {// gọi khi thanh toán thành công
+  try { 
+    const orderPayload = {
+      user_id: userInfo.user_id,
+      email: userInfo.email,
+      phone: userInfo.phone,
+      address: userInfo.address,
+      city: userInfo.city,
+      total_amount: userInfo.total_amount,
+    };
+    const orderResponse = await api.post(url.ORDER.CREATE, orderPayload);
+    const order_id = orderResponse.data.id;
+
+    // Step 2: Upload images
+    if (cartItems.length > 0) {
+      for (const selectedItem of cartItems) {
+        const imageFormData = new FormData();
+        imageFormData.append("thumbnail", selectedItem.thumbnailUpload);
+        imageFormData.append("frame_id", selectedItem.frame_id);
+        imageFormData.append("hanger_id", selectedItem.hanger_id);
+        imageFormData.append("size_id", selectedItem.size_id);
+        imageFormData.append("order_id", order_id);
+        imageFormData.append("quantity", selectedItem.quantity);
+        imageFormData.append("amount", selectedItem.total);
+
+        // Use a different API call for image upload with distinct form data
+        const imageResponse = await api.post(url.IMAGE.POST, imageFormData, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+      }
+    
+    } else {
+      console.log("No image uploaded or empty cart");
+    }
+    localStorage.removeItem('cartItems');
+    localStorage.removeItem('totalAmount');
+    localStorage.removeItem('cartCount');
+    navigate('/')
+    window.alert("Thank you for your business!")
+    // Continue with any additional logic or state updates if needed
+  } catch (error) {
+    console.error('Failed to process payment:', error);
+    window.alert('Payment processing failed. Please try again.');
+  }
+};
+const onCancel = (data)=>{ // gọi api khi huỷ thanh toán
+    window.alert('Payment processing failed. Please try again.')
+}
+//another
+const formHandle = async (event) => {
+  event.preventDefault();
+  try {
+    setShow(true);
+   }catch(error){
+    console.error("Error:", error);
+   } // Prevent the default form submission behavior
+}
+  const [isPayPalReady, setIsPayPalReady] = useState(false);
+  const [show, setShow] = useState(false);
+  const handlePayPalScriptLoad = () => {
+    setIsPayPalReady(true);
+  };
+
   const navigate=useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [img, setImg] = useState({
@@ -32,57 +116,7 @@ const handleInputChange = (e) => {
     }));
 };
 
-  const formHandle = async (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior
-    const { user_id, email, phone, address, city, total_amount } = userInfo;
-
-    // Create a payload with user information including the new phone, address, city values
-    const payload = {
-        user_id,
-        email,
-        phone,
-        address,
-        city,
-        total_amount
-    };
-
-    try {
-        // Call your API to save the user information
-        const response = await api.post(url.ORDER.CREATE, payload);
-        const order_id = response.data.id;
-        console.log('Create Order Success')
-        // Handle success or perform further actions
-     
-      if (cartItems.length > 0) {
-        for (const selectedItem of cartItems) {
-          const imageFormData = new FormData();
-        // Populate image form data for image upload
-        imageFormData.append("thumbnail", selectedItem.thumbnailUpload);
-        imageFormData.append("frame_id", selectedItem.frame_id);
-        imageFormData.append("hanger_id", selectedItem.hanger_id);
-        imageFormData.append("size_id", selectedItem.size_id);
-        imageFormData.append("order_id", order_id);
-        imageFormData.append("quantity", selectedItem.quantity);
-        imageFormData.append("amount", selectedItem.total);
-
-        // Use a different API call for image upload with distinct form data
-        const imageResponse = await api.post(url.IMAGE.POST, imageFormData, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        navigate('/')
-      }
-        // Handle success of image upload if needed
-    } else {
-        console.log("No image uploaded or empty cart");
-    }
-} catch (error) {
-    // Handle errors for both user information and image upload
-    console.error("Error:", error);
-}
-};
-  const total = JSON.parse(localStorage.getItem('totalAmount')) || 0;
+  
   useEffect(() => {
     const storedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     setCartItems(storedCartItems);
@@ -104,9 +138,11 @@ const handleInputChange = (e) => {
     }
   }, []);
     return(
+
+      <PayPalScriptProvider options={initialOptions}>
       <body className="bg-light">
       <div className="container">
-      <form className="needs-validation" method="POST" onSubmit={formHandle} >
+      <form className="needs-validation" onSubmit={formHandle} >
         <div className="py-5 text-center">
         </div>
     
@@ -151,7 +187,12 @@ const handleInputChange = (e) => {
                 <strong>${total}.00</strong>
               </li>
               <li className="list-group-item border-0 d-flex justify-content-between">
-                <button className="btn bg-slate-900 text-slate-50 btn-block confirm-oder rounded-full" type="submit" style={{color:'white'}}>Confirm Oder</button>
+                <button className="btn bg-slate-900 text-slate-50 btn-block confirm-oder rounded-full" type="submit" style={{color:'white', marginBottom:'10px'}}>Confirm Oder</button>
+                {show ? (
+                <PayPalButtons createOrder={createOrder}
+                 onApprove={onApprove} 
+            onCancel={onCancel} style={{ layout: "horizontal" }}  />
+            ) : null}
               </li>
             </ul>
     
@@ -230,6 +271,7 @@ const handleInputChange = (e) => {
                 </ul>
                 
               </div>
+
       </div>
       
       </div>
@@ -237,6 +279,7 @@ const handleInputChange = (e) => {
       </div>
     
     </body>
+    </PayPalScriptProvider>
     )
 }
 export default CheckOut;
