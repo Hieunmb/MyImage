@@ -22,7 +22,6 @@ function CheckOut(){
     if ( cartItems.length > 0) {
       const formData = new FormData();
       const selectedItem = cartItems[0]; // Accessing the first item in the cartItems array as an example
-
       formData.append("thumbnail", selectedItem.thumbnailUpload);
       formData.append("frame_id", selectedItem.frame_id);
       formData.append("hanger_id", selectedItem.hanger_id);
@@ -81,7 +80,6 @@ function CheckOut(){
                   <div className="total">
                     <h2 className="price"> {item.total}.00$</h2>
                   </div>
-  
                 </div>
               </div>
               <div className="flex items-end justify-between pt-4 mt-auto">

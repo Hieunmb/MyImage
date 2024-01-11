@@ -63,10 +63,10 @@ function Product(){
     const handleImageUpload = (event) => {
         const imageFile = event.target.files[0];
         const imageUrl = URL.createObjectURL(imageFile);
-        
+    
         // Save the base64 string to localStorage
-        setUploadedImage(imageUrl);
         setImageFile(imageFile);
+        setUploadedImage(imageUrl);
         setProjects((prevProjects) => ({
             ...prevProjects,
             thumbnail: imageUrl,
@@ -83,7 +83,7 @@ function Product(){
     
         // Save data to localStorage
         const cartItem = {
-            thumbnailUpload:projects.thumbnailUpload,
+            thumbnailUpload:imageFile,
             thumbnail: uploadedImage,
             frame_id: frameStyles.id,
             size_id: projects.size_id,
