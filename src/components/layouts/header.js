@@ -35,7 +35,7 @@ function Header() {
     return(
     <header>
         <section className="header-top">
-            <div className="container-fluid padding-fix">
+            <div className="container-fluid padding-fix" >
                 <div className="row">
                     <div className="pull-left logo col-md-3 col-sm-3 col-xs-4">
                         <a href="/"><img src="assets/images/logo.png" alt="" className="pull-left"/></a>
@@ -52,7 +52,7 @@ function Header() {
                                 <li className="dropdown cart-menu-body">
                                     <a href="#"><img src="assets/images/shopping-bag.png" alt="" className="position-r"/><span className="span">{JSON.parse(localStorage.getItem('cartCount')) || 0}</span></a>
                                 </li>
-                                <li><a href="#" data-toggle="dropdown" className="login-popup">
+                                <li><a href="#" data-toggle="dropdown" className="login-popup" style={{verticalAlign:"initial"}}>
                                 <img style={{width:"35px"}} src="assets/images/blog/article-user.png" alt="" className=""/>
                                 <span style={{ marginLeft: '5px' }}>{decodeURIComponent(escape(customerName))}</span>
                                 </a>

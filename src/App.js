@@ -24,6 +24,10 @@ import { useJwt } from 'react-jwt';
 import Profile from'./components/pages/profile';
 import CheckOut from './components/pages/checkout/checkout';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+import Orders from'./components/pages/orders';
+import OrderDetail from'./components/pages/orderdetail';
+
+
 
 function App() {
     const location = useLocation();
@@ -74,6 +78,8 @@ function App() {
         <Route path='/checkout' element={<ProtectedRoute element= {<CheckOut/>}/>}/>
         <Route path='/invoice' element={<Invoice/>}/>
         <Route path='/profile' element={<Profile/>}/>
+        <Route path='/orders' element={<Orders/>}/>
+        <Route path='/orderdetail' element={<OrderDetail/>}/>
       </Routes>
       <Footer currentLocation={location.pathname}></Footer>
       </div>

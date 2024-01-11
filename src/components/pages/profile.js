@@ -1,22 +1,21 @@
 function Profile(){
-    return(
-        
-        <div className="container py-5">
-          
-      
-          <div className="row">
+    return(       
+        <aside class="left-sidebar" style={{ flexDirection: "column" }}>
+        <div class="scroll-sidebar">
+            <nav class="sidebar-nav">
+                <ul id="sidebarnav">                
+                    <li> <a class="waves-effect waves-dark" href="/profile" aria-expanded="false"><i style={{verticalAlign:"initial"}}></i><span>Information</span></a>
+                    </li>
+                    <li> <a class="waves-effect waves-dark" href="/orders" aria-expanded="false"><i style={{verticalAlign:"initial"}}></i><span>Orders</span></a>
+                    </li>              
+                </ul>
+            </nav>
+        </div>
+    
+        <div className="container py-5" style={{marginBottom:"100px"}}>            
+        <div className="row">
             <div className="col-lg-4">
-              <div className="card mb-4">
-                <div className="card-body text-center">
-                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                     className="rounded-circle img-fluid" style={{width: "150px"}}/>
-                  <h5 className="my-3">John Smith</h5>
-                  <p className="text-muted mb-1">Full Stack Developer</p>
-                  <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
-                  <div className="d-flex justify-content-center mb-2">
-                    <button type="button" className="btn btn-success">Change Password</button>
-                  </div>
-                </div>
+              <div className="card mb-4">           
               </div>            
             </div>
             <div className="col-lg-8">
@@ -64,7 +63,8 @@ function Profile(){
                 </div>
               </div>
             </div>
-          
+            </aside>
+         
         
         
       
