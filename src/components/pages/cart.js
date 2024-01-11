@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import api from '../../services/api';
+import url from '../../services/url';
+import { useNavigate } from 'react-router-dom';
 function Cart(){
+    const navigate= useNavigate();
     const [cartItems, setCartItems] = useState([]);
     const [cartCount, setCartCount] = useState(0);
     const [totalAmount, setTotalAmount] = useState(0);
-    
     const updateQuantity = (index, action) => {
         const updatedCartItems = [...cartItems];
         const itemToUpdate = { ...updatedCartItems[index] };
@@ -58,6 +61,7 @@ function Cart(){
         const initialTotal = storedCartItems.reduce((total, item) => total + parseFloat(item.total), 0);
         setTotalAmount(initialTotal);
         localStorage.setItem('totalAmount', initialTotal);
+        
     }, []);
     return(
         <div className="modal fade paira-cart-popup" id="paira-ajax-cart" tabindex="-1" role="dialog" aria-hidden="true">
@@ -103,10 +107,11 @@ function Cart(){
                         </div>
                     </div>
                     <div className="col-md-5 col-sm-5 col-xs-12 cart-table margin-top-40">
-                        <div className="margin-bottom-30">
+            
                             <h3 className="margin-clear margin-bottom-15">Sub Total</h3>
                             <div className="cart-sub-total">
                                 <h1 className="margin-bottom-15 text-center"><span className="money">${totalAmount.toFixed(2)}</span></h1>
+                                
                                 <a href='/checkout' style={{color:"white"}}><button type="submit" id="checkout" className="btn btn-success btn-lg btn-block" name="checkout" value="Proceed To Checkout">Proceed To Checkout</button></a>
                             </div>
                         </div>
@@ -114,7 +119,6 @@ function Cart(){
                 </div>
             </div>
         </div>
-    </div>
 </div>
     )
 }

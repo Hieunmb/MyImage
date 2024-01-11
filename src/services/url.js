@@ -32,8 +32,15 @@ const url ={
         GET:"/Hanger/get-by-id"
     },
     UPLOAD:{
-        LIST:"/Upload",
-        POST:"/Upload/upload"
+        LIST:"/ImageUrl",
+        CREATE:"/ImageUrl"
+    },
+    ORDER:{
+        LIST:"/Order",
+        CREATE:"/Order",
+        GET:"/Order/get-by-id",
+        CANCEL:"/Order/CancelOrder",
+        UPDATE:"/Order/UpdateOrder"
     }
 }
 export default url;

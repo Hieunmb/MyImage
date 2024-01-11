@@ -13,7 +13,6 @@ function Product(){
     const [projects, setProjects] = useState({
         thumbnail: "",
         frame_id:1,
-        material_id: 1,
         size_id: 1,
         hanger_id:1,
         quantity:1,
@@ -56,6 +55,10 @@ function Product(){
         productImage.style.width = selectedSize.sizeWidth;
 
     setSelectedSize(newSelectedOption); // Update the selected option in state
+    setProjects((prevProjects) => ({
+        ...prevProjects,
+        size_id: selectedSize.id,
+    }));
 
     };
     const [uploadedImage, setUploadedImage] = useState(null);
@@ -63,10 +66,10 @@ function Product(){
     const handleImageUpload = (event) => {
         const imageFile = event.target.files[0];
         const imageUrl = URL.createObjectURL(imageFile);
-        
+    
         // Save the base64 string to localStorage
-        setUploadedImage(imageUrl);
         setImageFile(imageFile);
+        setUploadedImage(imageUrl);
         setProjects((prevProjects) => ({
             ...prevProjects,
             thumbnail: imageUrl,
@@ -74,18 +77,29 @@ function Product(){
         }));
     };
     
-    const formHandle = (event) => {
+    const formHandle =  async (event) => {
         event.preventDefault();
+        const token = localStorage.getItem('accessToken');
     
-        // Validate if all necessary fields are present
-    
-        // Existing code for API call and handling
+        let uploadedImageUrl = "";
+        if (imageFile) {
+            try {
+                const formData = new FormData();
+                formData.append("thumbnail", imageFile); // Gửi hình ảnh dưới dạng 'image'
+        
+                const uploadResponse = await api.post(url.UPLOAD.CREATE, formData);
+                uploadedImageUrl = uploadResponse.data.thumbnail;
+            } catch (error) {
+                console.error("Lỗi khi upload hình ảnh:", error);
+                return;
+            }
+        }
     
         // Save data to localStorage
         const cartItem = {
-            thumbnailUpload:projects.thumbnailUpload,
-            thumbnail: uploadedImage,
-            frame_id: frameStyles.id,
+            thumbnailUpload:uploadedImageUrl,
+            thumbnail: uploadedImageUrl,
+            frame_id: projects.frame_id,
             size_id: projects.size_id,
             hanger_id:projects.hanger_id,
             quantity: quantity,
@@ -156,6 +170,10 @@ const handleChange = (event) => {
     productImage.style.boxShadow = `0 0 0 10px ${selectedStyle.frame_color_insite} inset`;
 
     setSelectedOption(newSelectedOption);
+    setProjects((prevProjects) => ({
+        ...prevProjects,
+        frame_id: selectedFrame.id,
+    }));
 };
 const [hangerStyles, setHangerStyles] = useState([]);
 const [selectedHangerPrice, setSelectedHangerPrice] = useState(0.00);
@@ -183,6 +201,10 @@ const handleHangerChange = (event) => {
     setSelectedHangerPrice(selectedStyle.hangerAmount);
 
     setSelectedHangerOption(newSelectedOption);
+    setProjects((prevProjects) => ({
+        ...prevProjects,
+        hanger_id: selectedHanger.id,
+    }));
 };
     return(
         <main className="product-page">
