@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import api from '../../services/api';
+import url from '../../services/url';
+import { useNavigate } from 'react-router-dom';
 function Cart(){
-    const [selectedOption, setSelectedOption] = useState('PAYPAL');
-
-    const handlePaymentChange = (event) => {
-        setSelectedOption(event.target.value);
-    };
+    const navigate= useNavigate();
     const [cartItems, setCartItems] = useState([]);
     const [cartCount, setCartCount] = useState(0);
     const [totalAmount, setTotalAmount] = useState(0);
@@ -17,9 +16,11 @@ function Cart(){
         } else if (action === 'decrease' && itemToUpdate.quantity > 1) {
             itemToUpdate.quantity -= 1;
         }
-
+        itemToUpdate.total = itemToUpdate.quantity * itemToUpdate.price;
         updatedCartItems[index] = itemToUpdate;
+        
         localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+        recalculateTotal(updatedCartItems);
         setCartItems(updatedCartItems);
     };
 
@@ -32,9 +33,23 @@ function Cart(){
         localStorage.setItem('cartCount', updatedCartCount);
         setCartCount(updatedCartCount);
 
+        recalculateTotal(updatedCartItems);
+    };
+    const recalculateTotal = (updatedCartItems) => {
+        // Calculate the new total based on the updated cart items
         const newTotal = updatedCartItems.reduce((total, item) => total + parseFloat(item.total), 0);
+    
+        // Update the total in each item
+        const itemsWithUpdatedTotal = updatedCartItems.map((item) => ({
+            ...item,
+            total: item.quantity * item.price, // Assuming you have quantity and price
+        }));
+    
+        // Store the updated cart items with recalculated totals in localStorage
+        localStorage.setItem('cartItems', JSON.stringify(itemsWithUpdatedTotal));
+    
+        // Update the total amount state if needed
         setTotalAmount(newTotal);
-        window.location.reload();
     };
     useEffect(() => {
         const storedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
@@ -45,6 +60,8 @@ function Cart(){
 
         const initialTotal = storedCartItems.reduce((total, item) => total + parseFloat(item.total), 0);
         setTotalAmount(initialTotal);
+        localStorage.setItem('totalAmount', initialTotal);
+        
     }, []);
     return(
         <div className="modal fade paira-cart-popup" id="paira-ajax-cart" tabindex="-1" role="dialog" aria-hidden="true">
@@ -73,26 +90,12 @@ function Cart(){
                                         </div>
                                     </div>
                                     <div className="btn-group full-width dropdown-category margin-bottom-15">
-                                        <button type="button" className="btn btn-success dropdown-toggle text-uppercase" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{item.selectedSize}<i className="fa fa-angle-down dropdown-icon"></i></button>
-                                        <ul className="dropdown-menu text-uppercase">
-                                            <li><a href="#"></a></li>
-                                            <li><a href="#">Showcase</a></li>
-                                            <li><a href="#">Dining Room</a></li>
-                                            <li><a href="#">Living Room</a></li>
-                                            <li><a href="#">Drowing Room</a></li>
-                                        </ul>
+                                        <button type="button" className="btn btn-success dropdown-toggle text-uppercase" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{item.selectedSize}</button>
                                     </div>
                                     <div className="btn-group full-width dropdown-category margin-bottom-15">
-                                        <button type="button" className="btn btn-success dropdown-toggle text-uppercase" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{item.hanger}<i className="fa fa-angle-down dropdown-icon"></i></button>
-                                        <ul className="dropdown-menu text-uppercase">
-                                            <li><a href="#"></a></li>
-                                            <li><a href="#">Showcase</a></li>
-                                            <li><a href="#">Dining Room</a></li>
-                                            <li><a href="#">Living Room</a></li>
-                                            <li><a href="#">Drowing Room</a></li>
-                                        </ul>
+                                        <button type="button" className="btn btn-success dropdown-toggle text-uppercase" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{item.hanger}</button>
                                     </div>
-                                    <h2 className="margin-clear cart-product-price">{item.total}</h2>
+                                    <h2 className="margin-clear cart-product-price">${item.total}.00</h2>
                                 </div>
                                 <div className="row-3"><p><a onClick={() => removeFromCart(index)} className="remove margin-top-20"><i className="fa fa-trash fa-2x"></i></a></p></div>
                             </div>
@@ -107,33 +110,9 @@ function Cart(){
                         <div className="margin-bottom-30">
                             <h3 className="margin-clear margin-bottom-15">Sub Total</h3>
                             <div className="cart-sub-total">
-                            <label className="radio-option" style={{marginRight:"15px"}}>
-                                        <input
-                                            style={{ webkitAppearance: 'auto' }}
-                                            type="radio"
-                                            value="PAYPAL"
-                                            checked={selectedOption === 'PAYPAL'}
-                                            onChange={handlePaymentChange}
-                                            name='paymentOption'
-                                        />
-                                        <span><i class='fab fa-paypal fa-9x' style={{fontSize:"20px",width:'20px',marginLeft:'5px'}}></i></span>
-                                        <span>PayPal</span>
-                                    </label>
-                                    <br></br>
-                                    <label className="radio-option" style={{marginRight:"15px"}}>
-                                        <input
-                                            style={{ webkitAppearance: 'auto' }}
-                                            type="radio"
-                                            value="COD"
-                                            checked={selectedOption === 'COD'}
-                                            onChange={handlePaymentChange}
-                                            name='paymentOption'
-                                        />
-                                        <span><i class='fas fa-cart-arrow-down' style={{fontSize:"18px",width:'23px',marginLeft:'5px'}}></i></span>
-                                        <span>COD</span>
-                                    </label>
                                 <h1 className="margin-bottom-15 text-center"><span className="money">${totalAmount.toFixed(2)}</span></h1>
-                                <input type="submit" id="checkout" className="btn btn-success btn-lg btn-block" name="checkout" value="Proceed To Checkout"/>
+                                
+                                <a href='/checkout' style={{color:"white"}}><button type="submit" id="checkout" className="btn btn-success btn-lg btn-block" name="checkout" value="Proceed To Checkout">Proceed To Checkout</button></a>
                             </div>
                         </div>
                     </div>

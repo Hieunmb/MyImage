@@ -6,10 +6,9 @@ const url ={
         PROFILE:"/User/profile",
     },
     IMAGE:{
-        GET:"/Image",
-        POST:"/Image",
-        PUT:"/Image",
-        DELETE:"/Image",
+        LIST:"/OrderImage",
+        POST:"/OrderImage",
+        GET:"/OrderImage/get-by-order-id",
     },
     FRAME:{
         LIST:"/Frame",
@@ -31,6 +30,16 @@ const url ={
         EDIT:"/Hanger",
         DELETE:"/Hanger",
         GET:"/Hanger/get-by-id"
+    },
+    UPLOAD:{
+        LIST:"/ImageUrl",
+        CREATE:"/ImageUrl"
+    },
+    ORDER:{
+        LIST:"/Order",
+        CREATE:"/Order",
+        GET:"/Order/get-by-id",
+        CANCEL:"/Order/CancelOrder",
     }
 }
 export default url;

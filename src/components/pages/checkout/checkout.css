@@ -1,0 +1,164 @@
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+
+.rounded-2xl {
+border-radius: 1rem!important;
+}
+
+.ml-3 {
+margin-left: .75rem;
+}
+.mt-1\.5 {
+margin-top: .375rem;
+}
+.px-4 {
+padding-left: 1rem;
+padding-right: 1rem;
+}
+.confirm-oder{
+color: white;
+background-color: #121A2D!important;
+font-size: 1rem;
+line-height: 1.5rem;
+width: 100%;
+padding-bottom: .875rem;
+padding-top: .875rem;
+font-weight: 500;
+justify-content: center;
+border: 0 solid #e5e7eb;
+box-sizing: border-box;
+}
+.rounded-full {
+border-radius: 9999px!important;
+}
+.mr-075{
+margin-right: 0.75rem;
+}
+.flex{
+display: flex;
+}
+.relative{
+position: relative;
+}
+.py-7 {
+  padding-bottom: 1.75rem;
+  padding-top: 1.75rem;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-1 {
+  flex: 1 1;
+}
+.ml-3 {
+  margin-left: 0.75rem;
+}
+.sm\:ml-6 {
+  margin-left: 1.5rem;
+}
+.image-checkout{
+  width: 7.5rem;
+border-radius: 10%;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.items-end {
+  align-items: end;
+}
+.pt-4 {
+  padding-top: 1rem;
+}
+.mt-auto{
+margin-top: auto;
+}
+.border-l {
+  border-left-width: 1px;
+}
+/* tăng số lượng */
+.content {
+	background-color: #fff;
+  border: 1px solid #ccc;
+  border-style: none none solid none;
+  float: left;
+}
+.price{
+padding-left: .625rem;
+padding-right: .625rem;
+padding-bottom: .375rem;
+padding-top: .375rem;
+text-align: center;
+font-size : 0.875rem;
+width : 70px;
+border-radius: .5rem;
+border: 2px solid rgb(34 197 94);
+color: rgb(34 197 94);
+}
+.full-price {
+display: none;
+  background: #53b5aa;
+  color: #fff;
+  float: right;
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 49px;
+  margin: 0;
+  padding: 0 30px;
+
+  -webkit-transition: margin .15s linear;
+  -moz-transition: margin .15s linear;
+  -ms-transition: margin .15s linear;
+  -o-transition: margin .15s linear;
+  transition: margin .15s linear;
+}
+
+.qt, .qt-plus, .qt-minus {
+  display: block;
+  float: left;
+}
+
+.qt {
+  font-size: 18px;
+  line-height: 35px;
+  width: 70px;
+  text-align: center;
+}
+
+.qt-plus, .qt-minus {
+text-align: center;
+  width: 35px;
+border-radius: 50%;
+  background: #fcfcfc;
+  border: 1px solid grey;
+  font-size: 18px;
+  font-weight: 300;
+  height: 100%;
+  padding: 0 10px;
+}
+
+.qt-plus:hover, .qt-minus:hover {
+  cursor: pointer;
+}
+
+.qt-plus {
+  line-height: 35px;
+}
+
+.qt-minus {
+  line-height: 35px;
+}
+.mb-3{
+    margin-bottom: 10px;
+}
