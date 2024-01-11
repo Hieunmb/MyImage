@@ -22,6 +22,9 @@ import Menu from './components/pages/menu';
 import Invoice from './components/pages/invoice';
 import { useJwt } from 'react-jwt';
 import Profile from'./components/pages/profile';
+import Orders from'./components/pages/orders';
+import OrderDetail from'./components/pages/orderdetail';
+
 
 
 function App() {
@@ -71,6 +74,8 @@ function App() {
         <Route path='/search' element={<Search/>}/>
         <Route path='/invoice' element={<Invoice/>}/>
         <Route path='/profile' element={<Profile/>}/>
+        <Route path='/orders' element={<Orders/>}/>
+        <Route path='/orderdetail' element={<OrderDetail/>}/>
       </Routes>
       <Footer currentLocation={location.pathname}></Footer>
       </div>

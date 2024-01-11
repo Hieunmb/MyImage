@@ -1,11 +1,11 @@
 function Invoice(){
     return(
-        <div className="card">
+        <div className="card" style={{width:"50%",border:"solid 1px black",margin:"auto",marginBottom:"50px",paddingBottom:"20px"}}>
   <div className="card-body">
     <div className="container mb-5 mt-3">
       <div className="row d-flex align-items-baseline">
         <div className="col-xl-9">
-          <p style={{color: "#7e8d9f",fontSize: "20px"}}>Invoice &gt;&gt; <strong>ID: #123-123</strong></p>
+          <p style={{color: "#7e8d9f",fontSize: "20px",marginLeft:"30px",}}>Invoice &gt;&gt; <strong>ID: #123-123</strong></p>
         </div>
       </div>
       <div className="container">
@@ -13,18 +13,19 @@ function Invoice(){
           <div className="text-center">
             <i className="far fa-4x ms-0" style={{color:"#8f8061" }}></i>
           </div>
-          <hr></hr>
+          
         </div>
+       
         <div className="row" style={{display:"flex"}} >
           <div className="col-xl-8" style={{marginLeft:"18px"}}>
             <ul className="list-unstyled">
               <li className="text-muted" style={{fontWeight:"bold"}}>To: <span style={{color:"#8f8061"}}>Name</span></li>
               <li className="text-muted" style={{fontWeight:"bold"}}>Street, City:</li>
               <li className="text-muted"style={{fontWeight:"bold"}}>State, Country:</li>
-              <li className="text-muted" style={{fontWeight:"bold"}}><i className="fas fa-phone"></i>Phonenumber:123-456-789</li>
+              <li className="text-muted" style={{fontWeight:"bold"}}>Phonenumber:123-456-789</li>
             </ul>
           </div>
-          <div className="col-xl-4" style={{marginLeft:"550px"}}>
+          <div className="col-xl-4" style={{marginLeft:"300px"}}>
             <p className="text-muted" style={{fontWeight:"700"}}>Invoice</p>
             <ul className="list-unstyled">
               <li className="text-muted"><i className="fas fa-circle" style={{color:"#8f8061"}}></i> <span
@@ -66,14 +67,11 @@ function Invoice(){
             </p>
           </div>
         </div>
-        <hr></hr>
+       
         <div className="row">
-          <div className="col-xl-8" style={{marginLeft:"40px"}}>
-            <p className="ms-3">Add additional notes and payment information</p>
-          </div>
           <div className="col-xl-3" style={{float:"right"}}>
             <ul className="list-unstyled">
-              <li className="text-muted ms-3"><span className="text-black me-4">Sub Total:</span>  $1050</li>
+              <li className="text-muted ms-3"style={{marginRight:"570px",marginTop:"35px"}} ><span className="text-black me-4">Sub Total:</span>$1050</li>
               <li className="text-muted ms-3 mt-2"><span className="text-black me-4">Shipping:</span>$15</li>
             </ul>
             <p className="text-black float-start"><span className="text-black me-3"> Total Amount:</span><span
