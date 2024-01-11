@@ -54,6 +54,9 @@ function BreadCrumb({ currentLocation }) {
       case '/profile':
       breadcrumbName = 'User Profile';
       break;
+      case '/checkout':
+      breadcrumbName = 'Check Out';
+      break;
   }
 
   return (
