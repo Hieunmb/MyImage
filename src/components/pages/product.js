@@ -66,10 +66,10 @@ function Product(){
     const handleImageUpload = (event) => {
         const imageFile = event.target.files[0];
         const imageUrl = URL.createObjectURL(imageFile);
-        
+    
         // Save the base64 string to localStorage
-        setUploadedImage(imageUrl);
         setImageFile(imageFile);
+        setUploadedImage(imageUrl);
         setProjects((prevProjects) => ({
             ...prevProjects,
             thumbnail: imageUrl,

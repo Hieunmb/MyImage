@@ -134,7 +134,6 @@ const handleInputChange = (e) => {
                   <div className="total">
                     <h2 className="price"> {item.total}.00$</h2>
                   </div>
-  
                 </div>
               </div>
               <div className="flex items-end justify-between pt-4 mt-auto">

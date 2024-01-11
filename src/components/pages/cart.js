@@ -64,6 +64,7 @@ function Cart(){
         
     }, []);
     return(
+        <form method='POST'>
         <div className="modal fade paira-cart-popup" id="paira-ajax-cart" tabindex="-1" role="dialog" aria-hidden="true">
     <div className="modal-dialog modal-lg">
         <div className="modal-content">
@@ -107,7 +108,39 @@ function Cart(){
                         </div>
                     </div>
                     <div className="col-md-5 col-sm-5 col-xs-12 cart-table margin-top-40">
-                        <div className="margin-bottom-30">
+                    <h4 className="mb-3">Shopping address</h4>
+              <div className="row">
+                <div className="col-md-6 mb-3">
+                  <label for="firstName">Name</label>
+                  <input type="text" className="form-control rounded-2xl" id="firstName" placeholder="" value="" />
+                  
+                </div>
+                <div className="col-md-6 mb-3">
+                  <label for="email">Email</label>
+                  <input type="email" className="form-control rounded-2xl" id="email" placeholder="" value="" />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-6 mb-3">
+                  <label for="phonenumber">Phone Number</label>
+                  <input type="text" className="form-control rounded-2xl" id="phonenumber" placeholder="" value="" />
+                  
+                </div>
+                <div className="col-md-6 mb-3">
+                  <label for="country">City</label>
+                  <input type="text" className="form-control rounded-2xl" id="city" placeholder="" value="" />
+                  
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-12 mb-3">
+                  <label for="country">Address</label>
+                  <input type="text" className="form-control rounded-4xl" id="address" placeholder="" value="" />
+                  
+                </div>
+                
+              </div>
+            
                             <h3 className="margin-clear margin-bottom-15">Sub Total</h3>
                             <div className="cart-sub-total">
                                 <h1 className="margin-bottom-15 text-center"><span className="money">${totalAmount.toFixed(2)}</span></h1>
@@ -119,8 +152,8 @@ function Cart(){
                 </div>
             </div>
         </div>
-    </div>
 </div>
+</form>
     )
 }
 export default Cart;
