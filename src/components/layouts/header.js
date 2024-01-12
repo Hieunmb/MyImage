@@ -59,8 +59,12 @@ function Header() {
                             <Link to="/profile">Profile</Link>
                         </li>
                         <li>
+                        <Link to="/orders">Your Order</Link>
+                        </li>
+                        <li>
                             <Link to="/login" onClick={handleLogout}><i className="fa fa-arrow-right"></i>Log Out</Link>
                         </li>
+                        
                     </>
                 ) : (
                     <li>

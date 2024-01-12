@@ -79,7 +79,7 @@ function App() {
         <Route path='/invoice/:id' element={<Invoice/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/orders' element={<Orders/>}/>
-        <Route path='/orderdetail' element={<OrderDetail/>}/>
+        <Route path='/orderdetail/:id' element={<OrderDetail/>}/>
       </Routes>
       <Footer currentLocation={location.pathname}></Footer>
       </div>

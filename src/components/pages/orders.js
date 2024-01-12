@@ -36,6 +36,9 @@ import { Link } from "react-router-dom";
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">List Orders</h5>
+                            {orders
+                            .filter((order) => order.user_id == cusId)
+                            .length > 0 ? (
                             <div class="table-responsive m-t-30">
                                 <table class="table product-overview">
                                     <thead>
@@ -97,6 +100,12 @@ import { Link } from "react-router-dom";
                                     </tbody>
                                 </table>
                             </div>
+                            ) : (
+                              <div>
+                                <h1>You haven't placed any orders yet.</h1>
+                      <Link to="/product" className="btn btn-primary" style={{ borderRadius: "15px", backgroundColor: "#03a9f3" }}> Explore Products </Link>
+                    </div>
+                          )}
                         </div>
                     </div>
                 </div>

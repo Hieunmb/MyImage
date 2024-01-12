@@ -54,14 +54,8 @@ function BreadCrumb({ currentLocation }) {
     case '/profile':
       breadcrumbName = 'User Profile';
       break;
-      case '/invoice':
-      breadcrumbName = 'Invoice';
-      break;
       case '/orders':
       breadcrumbName = 'Order';
-      break;
-      case '/orderdetail':
-      breadcrumbName = 'Order Detail';
       break;
       case '/profile':
       breadcrumbName = 'User Profile';
@@ -73,6 +67,9 @@ function BreadCrumb({ currentLocation }) {
   }
   if (location.pathname.startsWith('/invoice/')) {
     breadcrumbName = 'Invoice';
+  }
+  if (location.pathname.startsWith('/orderdetail/')) {
+    breadcrumbName = 'Order Detail';
   }
 
   return (

@@ -67,7 +67,6 @@ const fetchData = async () => {
 };
 useEffect(() => {
   fetchData();
-  console.log(formData.user_name) // Fetch data for the 'id' when the component mounts
 }, [id]);
     return(
         <div className="card" style={{width:"50%",border:"solid 1px black",margin:"auto",marginBottom:"50px",paddingBottom:"20px"}}>
