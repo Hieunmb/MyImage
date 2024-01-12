@@ -8,6 +8,10 @@ function Register(){
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
+    const [formErrors, setFormErrors] = useState({
+        email: "",
+        password: "",
+      });
     const navigate = useNavigate();
     const [user, setUser] = useState({
         name: '',
@@ -33,7 +37,10 @@ function Register(){
                 navigate('/login');
             }, 2000);
         } catch (error) {
-            console.log(error);
+            setFormErrors({
+                email: "Email already in use",
+                password: "Invalid email or password.",
+              });
         }
     };
     return(
@@ -60,6 +67,8 @@ function Register(){
                                             <span className="input-group-addon" id="basic-addon16">Email</span>
                                             <input type="email" onChange={handleChange} name="email"
                                                 value={user.email} className="form-control" aria-describedby="basic-addon3"/>
+                                                {formErrors.email && <div className="invalid-feedback">{formErrors.email}
+                                        </div>}
                                         </div>
                                         <div className="input-group margin-bottom-20">
                                             <span className="input-group-addon" id="basic-addon13">Phone</span>

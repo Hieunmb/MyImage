@@ -8,7 +8,7 @@ function BreadCrumb({ currentLocation }) {
   // Check if the current path is '/'
   const isHomePage = location.pathname === '/' || location.pathname === '/404';          
 
-  let breadcrumbName = 'Default'; // Default name or any other initial value
+  let breadcrumbName = ''; // Default name or any other initial value
 
   // Update breadcrumb name based on current location
   switch (currentLocation) {
@@ -54,14 +54,8 @@ function BreadCrumb({ currentLocation }) {
     case '/profile':
       breadcrumbName = 'User Profile';
       break;
-      case '/invoice':
-      breadcrumbName = 'Invoice';
-      break;
       case '/orders':
       breadcrumbName = 'Order';
-      break;
-      case '/orderdetail':
-      breadcrumbName = 'Order Detail';
       break;
       case '/profile':
       breadcrumbName = 'User Profile';
@@ -69,6 +63,13 @@ function BreadCrumb({ currentLocation }) {
       case '/checkout':
       breadcrumbName = 'Check Out';
       break;
+      
+  }
+  if (location.pathname.startsWith('/invoice/')) {
+    breadcrumbName = 'Invoice';
+  }
+  if (location.pathname.startsWith('/orderdetail/')) {
+    breadcrumbName = 'Order Detail';
   }
 
   return (
@@ -76,7 +77,7 @@ function BreadCrumb({ currentLocation }) {
         <div className="breadcrumb">
             <div className="container-fluid padding-fix">
                 <ul className="list-inline">
-                    <li><a href="#">Home <i className="fa fa-angle-right"></i></a></li>
+                    <li><a href="/">Home <i className="fa fa-angle-right"></i></a></li>
                     <li>{breadcrumbName}</li>
                 </ul>
             </div>
