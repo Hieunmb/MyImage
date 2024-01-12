@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import api from "../../../services/api";
 import url from "../../../services/url";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { decodeToken } from "react-jwt";
 
 function CheckOut(){
   //paypal
@@ -62,7 +63,7 @@ const onApprove =  async (data)=> {// gọi khi thanh toán thành công
     localStorage.removeItem('cartItems');
     localStorage.removeItem('totalAmount');
     localStorage.removeItem('cartCount');
-    navigate('/')
+    navigate(`/invoice/${order_id}`)
     window.alert("Thank you for your business!")
     // Continue with any additional logic or state updates if needed
   } catch (error) {
@@ -119,12 +120,13 @@ const handleInputChange = (e) => {
   
   useEffect(() => {
     const storedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const cartCount = JSON.parse(localStorage.getItem('cartCount')) || 0;
     setCartItems(storedCartItems);
     const token = localStorage.getItem("accessToken");
     if (token) {
-        const decodedToken = JSON.parse(atob(token.split(".")[1]));
+        const decodedToken = decodeToken(token);
         const customerName = decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
-        const decodedCustomerName = decodeURIComponent(escape(customerName));
+        const decodedCustomerName = customerName;
 
         // Update userInfo using the decodedToken value
         setUserInfo((prevUserInfo) => ({
@@ -135,6 +137,11 @@ const handleInputChange = (e) => {
             total_amount:localStorage.getItem("totalAmount")
         }));
 
+    }
+    if (cartCount==0) {
+      // Redirect to "/404" if the user IDs don't match
+      navigate("/404");
+      return;
     }
   }, []);
     return(

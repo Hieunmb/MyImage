@@ -76,7 +76,7 @@ function App() {
         <Route path='/reset-password' element={<ResetPassword/>}/>
         <Route path='/search' element={<Search/>}/>
         <Route path='/checkout' element={<ProtectedRoute element= {<CheckOut/>}/>}/>
-        <Route path='/invoice' element={<Invoice/>}/>
+        <Route path='/invoice/:id' element={<Invoice/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/orders' element={<Orders/>}/>
         <Route path='/orderdetail' element={<OrderDetail/>}/>
