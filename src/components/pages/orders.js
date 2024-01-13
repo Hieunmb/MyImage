@@ -37,6 +37,16 @@ import { Link, useNavigate } from "react-router-dom";
       // Handle error, show message, etc.
     }
   };
+  const handleReceived = async (orderId) => {
+    try {
+      await api.put(url.ORDER.UPDATE+`?Id=${orderId}`);
+      window.location.reload()
+      window.alert("Your order received success")
+    } catch (error) {
+      console.error("Status update failed:", error);
+      // Handle error, show message, etc.
+    }
+  };
      return(
         <div class="page-wrapper">
         <div class="container-fluid" style={{marginLeft:"50px"}}>
@@ -113,6 +123,14 @@ import { Link, useNavigate } from "react-router-dom";
                   <button className="btn btn-primary" style={{ borderRadius: "15px", backgroundColor: "red" }} onClick={() => handleCancel(o.id)}>
                     Cancel
                   </button>
+                  ) : o.status === 4 ? (
+                    <button className="btn btn-success" style={{ borderRadius: "15px", backgroundColor: "green" }} onClick={() => handleReceived(o.id)}>
+                      Received
+                    </button>
+                  ) : o.status === 5 ? (
+                    <a className="btn btn-primary" style={{ borderRadius: "15px", backgroundColor: "#5cb85c", color:"black" }}>
+                    Succeed
+                  </a>
                 ) : (
                   <a className="btn btn-primary" style={{ borderRadius: "15px", backgroundColor: "gray", color:"black" }}>
                     Cancel
