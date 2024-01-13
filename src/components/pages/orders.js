@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import api from "../../services/api";
 import url from "../../services/url";
 import { decodeToken } from "react-jwt";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
     function Order(){
+      const navigate=useNavigate();
         const token = localStorage.getItem("accessToken");
     const decodedToken = decodeToken(token);
     const cusId=decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
@@ -24,6 +25,28 @@ import { Link } from "react-router-dom";
     fetchOrders();
     
   }, []);
+  const handleCancel = async (orderId) => {
+    try {
+      await api.put(url.ORDER.CANCEL+`?Id=${orderId}`);
+      window.location.reload()
+      window.alert("Your order canceled success")
+      // Optionally, update the state or fetch orders again to reflect the cancellation
+      // setOrders(updatedOrders);
+    } catch (error) {
+      console.error("Cancellation failed:", error);
+      // Handle error, show message, etc.
+    }
+  };
+  const handleReceived = async (orderId) => {
+    try {
+      await api.put(url.ORDER.UPDATE+`?Id=${orderId}`);
+      window.location.reload()
+      window.alert("Your order received success")
+    } catch (error) {
+      console.error("Status update failed:", error);
+      // Handle error, show message, etc.
+    }
+  };
      return(
         <div class="page-wrapper">
         <div class="container-fluid" style={{marginLeft:"50px"}}>
@@ -95,6 +118,25 @@ import { Link } from "react-router-dom";
                                             </td>
                                             <td>{o.created_at}</td>
                                             <td><Link to={`/orderdetail/${o.id}`} className="btn btn-primary" style={{borderRadius:"15px", backgroundColor:"#03a9f3"}}> Detail  </Link></td>
+                                            <td>
+                                            {o.status === 1 ? (
+                  <button className="btn btn-primary" style={{ borderRadius: "15px", backgroundColor: "red" }} onClick={() => handleCancel(o.id)}>
+                    Cancel
+                  </button>
+                  ) : o.status === 4 ? (
+                    <button className="btn btn-success" style={{ borderRadius: "15px", backgroundColor: "green" }} onClick={() => handleReceived(o.id)}>
+                      Received
+                    </button>
+                  ) : o.status === 5 ? (
+                    <a className="btn btn-primary" style={{ borderRadius: "15px", backgroundColor: "#5cb85c", color:"black" }}>
+                    Succeed
+                  </a>
+                ) : (
+                  <a className="btn btn-primary" style={{ borderRadius: "15px", backgroundColor: "gray", color:"black" }}>
+                    Cancel
+                  </a>
+                )}
+                  </td>
                                         </tr>
                                         ))}
                                     </tbody>

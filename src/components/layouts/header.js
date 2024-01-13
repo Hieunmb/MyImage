@@ -56,9 +56,6 @@ function Header() {
                                 {accessTokenExists ? (
                     <>
                         <li>
-                            <Link to="/profile">Profile</Link>
-                        </li>
-                        <li>
                         <Link to="/orders">Your Order</Link>
                         </li>
                         <li>
