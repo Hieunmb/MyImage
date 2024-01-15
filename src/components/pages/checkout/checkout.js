@@ -63,13 +63,28 @@ const onApprove =  async (data)=> {// gọi khi thanh toán thành công
     const emailPayload = {
       to: userInfo.email,
       subject: "Payment Confirmation",
-      body: `Thank you for your order! Your payment of $${total}.00 has been received.
-             View your order detail here http://localhost:3000/invoice/${order_id}`,
+      body: `<html>
+      <body>
+        <h1 style="color: #333;">Thank you for your order!</h1>
+        <p style="font-size: 16px; color: #666;">
+          Your payment of $${total}.00 has been received.
+        </p>
+        <p style="font-size: 14px; color: #888;">
+          We appreciate your business and look forward to serving you again!
+        </p>
+        <p style="font-size: 14px; color: #007bff;">
+          View your order details <a href="http://localhost:3000/invoice/${order_id}" target="_blank" style="color: #007bff; text-decoration: none;">here</a>.
+        </p>
+        <hr style="border-top: 1px solid #ddd;">
+        <p style="font-size: 12px; color: #aaa;">
+          This is an automated message. Please do not reply.
+        </p>
+      </body>
+    </html>`,
     };
 
     // Replace the following lines with your actual email sending logic
     const emailResponse = await api.post('https://localhost:7174/send', emailPayload);
-    console.log('Email sent:', emailResponse);
     localStorage.removeItem('cartItems');
     localStorage.removeItem('totalAmount');
     localStorage.removeItem('cartCount');
