@@ -60,6 +60,16 @@ const onApprove =  async (data)=> {// gọi khi thanh toán thành công
     } else {
       console.log("No image uploaded or empty cart");
     }
+    const emailPayload = {
+      to: userInfo.email,
+      subject: "Payment Confirmation",
+      body: `Thank you for your order! Your payment of $${total}.00 has been received.
+             View your order detail here http://localhost:3000/invoice/${order_id}`,
+    };
+
+    // Replace the following lines with your actual email sending logic
+    const emailResponse = await api.post('https://localhost:7174/send', emailPayload);
+    console.log('Email sent:', emailResponse);
     localStorage.removeItem('cartItems');
     localStorage.removeItem('totalAmount');
     localStorage.removeItem('cartCount');
