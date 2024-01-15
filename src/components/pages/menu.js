@@ -11,29 +11,10 @@ function Menu(){
                             <h3>MAIN MENU</h3>
                             <ul className="list-unstyled margin-top-20">
                                 <li><a href="/">Home</a></li>
-                                <li><a href="product">Shop</a></li>
-                                <li className="dropdown">
-                                    <a className="dropdown-toggle plus" data-toggle="dropdown" href="#">Collection<i className="fa fa-plus margin-left-5"></i><i className="fa fa-minus minus-fa"></i></a>
-                                    <ul className="dropdown-menu sub">
-                                        <li><a href="list-collection">List Collection</a></li>
-                                        <li><a href="collection">Collection</a></li>
-                                        <li><a href="collection-list-view">Collection List View</a></li>
-                                    </ul>
-                                </li>
+                                <li><a href="product">Shop</a></li>                                
                                 <li><a href="blog">Blog</a></li>
                                 <li><a href="about">About Us</a></li>
-                                <li><a href="contact">Contact Us</a></li>
-                                <li className="dropdown">
-                                    <a className="dropdown-toggle plus" data-toggle="dropdown" href="#">Pages<i className="fa fa-plus margin-left-5"></i><i className="fa fa-minus minus-fa"></i></a>
-                                    <ul className="dropdown-menu sub">
-                                        <li><a href="article">article</a></li>
-                                        <li><a href="login">login</a></li>
-                                        <li><a href="register">register</a></li>
-                                        <li><a href="reset-password">reset-password</a></li>
-                                        <li><a href="search">search</a></li>
-                                        <li><a href="404">404</a></li>
-                                    </ul>
-                                </li>
+                                <li><a href="contact">Contact Us</a></li>                               
                             </ul>
                             <hr/>
                             <ul className="social-links list-inline">

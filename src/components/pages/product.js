@@ -477,6 +477,7 @@ const handleHangerChange = (event) => {
             </div>
         </section>
     </main>
+    
     )
 }
 export default Product;

@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../services/api";
 import url from "../../services/url";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { decodeToken } from "react-jwt";
 
 function Invoice(){
@@ -65,11 +65,47 @@ const fetchData = async () => {
       console.error(error);
   }
 };
+// print button
+const contentRef = useRef(null);
+const print = () => {
+  // Hide the button before printing
+  const printButton = document.querySelector('#printButton');
+  if (printButton) {
+    printButton.style.display = 'none';
+  }
+
+  const content = contentRef.current;
+
+  if (content) {
+    const printWindow = window.open("", "_blank");
+    const printDocument = printWindow.document;
+
+    // Load your CSS styles for printing
+    const styles = document.querySelectorAll('link[rel="stylesheet"]');
+    styles.forEach((style) => {
+      printDocument.head.appendChild(style.cloneNode(true));
+    });
+
+    // Copy the content of the component into the new window
+    printDocument.body.innerHTML = content.innerHTML;
+
+    // Print the document
+    printWindow.print();
+    printWindow.close();
+
+    // Show the button again after printing
+    if (printButton) {
+      printButton.style.display = 'block';
+    }
+  }
+};
+
+
 useEffect(() => {
   fetchData();
 }, [id]);
     return(
-        <div className="card" style={{width:"50%",border:"solid 1px black",margin:"auto",marginBottom:"50px",paddingBottom:"20px"}}>
+        <div ref={contentRef} className="card" style={{width:"50%",border:"solid 1px black",margin:"auto",marginBottom:"50px",paddingBottom:"20px"}}>
   <div className="card-body">
     <div className="container mb-5 mt-3">
       <div className="row d-flex align-items-baseline">
@@ -165,11 +201,11 @@ useEffect(() => {
        ))}
         <div className="row">
           <div className="col-xl-3" style={{float:"right"}}>
-            <ul className="list-unstyled">
-              <li className="text-muted ms-3"style={{marginRight:"570px",marginTop:"35px"}} ><span className="text-black me-4">Sub Total:</span>${formData.total_amount}.00</li>
-            </ul>
             <p className="text-black float-start"><span className="text-black me-3"> Total Amount:</span><span
                 style={{fontSize: "25px"}}>${formData.total_amount}.00</span></p>
+                <ul className="list-unstyled">
+              <li id="printButton" className="text-muted ms-3"style={{marginRight:"570px",marginTop:"35px"}} ></li>
+            </ul>
           </div>
         </div>
       </div>
