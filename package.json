@@ -2,7 +2,7 @@
   "name": "my_images",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://hieunmb.github.io/MyImage/",
+  "homepage": "https://hieunmb.github.io/",
   "dependencies": {
     "@paypal/react-paypal-js": "^8.1.3",
     "@testing-library/jest-dom": "^5.17.0",
